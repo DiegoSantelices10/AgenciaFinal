@@ -1,0 +1,64 @@
+﻿@model AgenciaFinal.Models.Cliente
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="@Url.Content("~/css/misEstilos.css")">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <p>Registro al sistema</p>
+            </div>
+
+            <!-- Login Form -->
+            <form method="post" asp-action="Registro" asp-controller="Home">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+                <div class="form-group">
+                    <input asp-for="Nombre" class="form-control" type="text" placeholder="Usuario" />
+                    <br />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Password" class="form-control fadeIn third" type="text" id="login" placeholder="Password" />
+                    <br />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="CorreoElectronico" class="form-control fadeIn third" type="text" id="login" placeholder="Correo Electronico" />
+                    <br />
+                    <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+                </div>
+
+                <div class="form-group buttons">
+                    <input type="submit" class="fadeIn fourth" value="Registrarse" id="btnEntrar">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+
+
+</body>
+</html>
+
