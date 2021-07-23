@@ -22,7 +22,14 @@ namespace AgenciaFinal.Controllers
             _logger = logger;
         }
 
-       
+
+
+        public IActionResult Registro()
+        {
+            return View();
+        }
+
+
 
         //Post Create
         [HttpPost]
@@ -38,10 +45,9 @@ namespace AgenciaFinal.Controllers
             }
             return View();
         }
-        public IActionResult Registro()
-        {
-            return View();
-        }
+
+
+      
         public IActionResult Login()
         {
             return View();
@@ -55,11 +61,13 @@ namespace AgenciaFinal.Controllers
 
             if (user != null)
             {
-                _context.
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Clientes");
+            } else
+            {
+                return RedirectToAction("Login", "Home");
             }
 
-            return View();
+        
         }
 
 
