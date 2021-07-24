@@ -17,7 +17,7 @@ namespace AgenciaFinal.DataAccess
         }
 
 
-        public DbSet<Libro> Libro { get; set; }
+      
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Alojamiento> Alojamiento { get; set; }
         public DbSet<Reserva> Reserva { get; set; }
