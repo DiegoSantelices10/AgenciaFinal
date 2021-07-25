@@ -1,4 +1,5 @@
 ﻿using AgenciaFinal.DataAccess;
+using AgenciaFinal.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace AgenciaFinal.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Reserva> listaReservas = _context.Reserva;
+            return View(listaReservas);
         }
     }
 }
