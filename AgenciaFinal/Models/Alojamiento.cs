@@ -18,7 +18,7 @@ namespace AgenciaFinal.Models
         [Display(Name = "Ingresa cantidad de estrellas")]
         public string estrellas { get; set; }
 
-        [Display(Name = "Ingresa cantidad de personas")]
+        [Display(Name = "Ingresa N° de personas")]
         public int cantidadDePersonas { get; set; }
 
         [Display(Name = "Television?")]
@@ -27,7 +27,7 @@ namespace AgenciaFinal.Models
         [Display(Name = "Ingresa una ciudad")]
         public string ciudad { get; set; }
 
-        [Display(Name = "Ingresa cantidad de habitaciones")]
+        [Display(Name = "Ingresa N° de habitaciones")]
         public int cantidad_de_habitaciones { get; set; }
 
         [Display(Name = "Ingresa el precio por dia")]
@@ -36,7 +36,7 @@ namespace AgenciaFinal.Models
         [Display(Name = "Ingresa precio por persona")]
         public double precio_por_persona { get; set; }
 
-        [Display(Name = "Ingresa cantidad de baños")]
+        [Display(Name = "Ingresa N° de baños")]
         public int cantidadDeBanios { get; set; }
 
         [Display(Name = "Ingresa el tipo de alojamiento")]

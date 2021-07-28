@@ -15,118 +15,106 @@
 <body>
     <div class="container">
 
-        <div class="text-white m-3">
-            <h3 class="d-inline mr-3">Seleccione el tipo de alojamiento</h3>
-            <select id="foo" class="form-select p-2 pr-9" aria-label="Default select example">
+        <div class="text-white mt-3">
+            <h3 class="d-inline">Seleccione el tipo de alojamiento</h3>
+            <select id="foo" class="form-select" aria-label="Default select example">
                 <option value="hotel">Hotel</option>
                 <option value="cabania">Cabania</option>
             </select>
 
         </div>
 
-                <div id="cabania" class="col-sm-12" style="display:none">
-                    <form method="post" asp-action="Create" asp-controller="Alojamientos">
+        <hr class="bg-light"/>
 
+                <div id="cabania"  style="display:none" >
+                    <form style="font-size:small" method="post" asp-action="Create" asp-controller="Alojamientos">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-
                         <div class="row">
-                            <div class="form-group col-4">
-                                <label asp-for="barrio" class="control-label text-white"></label>
+                            <div class="form-group col-3">
+                                <label  asp-for="barrio" class="control-label text-white"></label>
                                 <input asp-for="barrio" class="form-control" />
                                 <span asp-validation-for="barrio" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="ciudad" class="control-label text-white"></label>
                                 <input asp-for="ciudad" class="form-control" />
                                 <span asp-validation-for="ciudad" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="estrellas" class="control-label text-white"></label>
                                 <input asp-for="estrellas" class="form-control" />
                                 <span asp-validation-for="estrellas" class="text-danger"></span>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="cantidadDePersonas" class="control-label text-white"></label>
                                 <input asp-for="cantidadDePersonas" class="form-control" />
                                 <span asp-validation-for="cantidadDePersonas" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-3">
                                 <label asp-for="precio_por_dia" class="control-label text-white"></label>
                                 <input asp-for="precio_por_dia" class="form-control" />
                                 <span asp-validation-for="precio_por_dia" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="cantidad_de_habitaciones" class="control-label text-white"></label>
                                 <input asp-for="cantidad_de_habitaciones" class="form-control" />
                                 <span asp-validation-for="cantidad_de_habitaciones" class="text-danger"></span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="cantidadDeBanios" class="control-label text-white"></label>
                                 <input asp-for="cantidadDeBanios" class="form-control" />
                                 <span asp-validation-for="cantidadDeBanios" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="tv" class="control-label text-white text-center"></label>
                                 <input asp-for="tv" class="form-control" />
                                 <span asp-validation-for="tv" class="text-danger"></span>
                             </div>
-
                         </div>
-
-
-
                         <div class="form-group">
                             <input type="submit" value="Agregar alojamiento" class="btn btn-primary" />
                         </div>
                     </form>
-
                 </div>
 
-
-
-
-
-                <div id="hotel" class="col-sm-12">
-                    <form method="post" asp-action="Create" asp-controller="Alojamientos">
-
+                <div id="hotel" >
+                    <form style="font-size:small" method="post" asp-action="Create" asp-controller="Alojamientos">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row">
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="barrio" class="control-label text-white"></label>
                                 <input asp-for="barrio" class="form-control" />
                                 <span asp-validation-for="barrio" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="ciudad" class="control-label text-white"></label>
                                 <input asp-for="ciudad" class="form-control" />
                                 <span asp-validation-for="ciudad" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="estrellas" class="control-label text-white"></label>
                                 <input asp-for="estrellas" class="form-control" />
                                 <span asp-validation-for="estrellas" class="text-danger"></span>
                             </div>
-                        </div>
-                        <div class="row">
 
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="cantidadDePersonas" class="control-label text-white"></label>
                                 <input asp-for="cantidadDePersonas" class="form-control" />
                                 <span asp-validation-for="cantidadDePersonas" class="text-danger"></span>
                             </div>
+                        </div>
+                        <div class="row">
 
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="precio_por_persona" class="control-label text-white"></label>
                                 <input asp-for="precio_por_persona" class="form-control" />
                                 <span asp-validation-for="precio_por_persona" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-4">
+                            <div class="form-group col-3">
                                 <label asp-for="tv" class="control-label text-white text-center"></label>
                                 <input asp-for="tv" class="form-control" />
                                 <span asp-validation-for="tv" class="text-danger"></span>

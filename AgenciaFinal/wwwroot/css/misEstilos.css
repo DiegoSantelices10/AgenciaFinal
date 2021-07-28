@@ -124,6 +124,7 @@ h2.active {
 
 
 
+
 input[type=button], input[type=submit], input[type=reset] {
     background-color: #56baed;
     border: none;
@@ -175,7 +176,7 @@ input[type=text] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
-    padding: 15px 32px;
+    padding: 15px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -382,3 +383,4 @@ input[type=text] {
 #icon {
     width: 60%;
 }
+

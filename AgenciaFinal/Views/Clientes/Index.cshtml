@@ -17,12 +17,15 @@
             <p>Busqueda de usuarios</p>
         </div>
 
-        <div class="input-group mb-3 row">
-            <input type="text" class="form-control col-6" placeholder="Ingresa el DNI" aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+        <div class="input-group">
+            <input type="text" class="form-control col-8" placeholder="Ingresa el DNI" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button">Buscar</button>
             </div>
         </div>
+        <hr class="bg-light" />
+
         @if (TempData["mensaje"] != null)
         {
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -33,13 +36,13 @@
             </div>
         }
 
-        <div class="row">
+
             @if (Model.Count() > 0)
             {
-                <table class="table table-bordered table-striped text-white">
+                <table class="tabla table table-bordered table-striped text-white">
                     <thead>
-                        <tr>
-                            <td>@Html.DisplayNameFor(m => m.Id)</td>
+                        <tr class="fila">
+                            <td >@Html.DisplayNameFor(m => m.Id)</td>
                             <td>@Html.DisplayNameFor(m => m.Nombre)</td>
                             <td>@Html.DisplayNameFor(m => m.Password)</td>
                             <td>@Html.DisplayNameFor(m => m.CorreoElectronico)</td>
@@ -61,12 +64,14 @@
                         }
                     </tbody>
                 </table>
-            } else {
+            }
+            else
+            {
                 <p>No Existen registros</p>
             }
         </div>
-    </div>
 
+    
 </body>
 </html>
 
