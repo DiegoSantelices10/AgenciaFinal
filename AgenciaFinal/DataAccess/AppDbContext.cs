@@ -18,7 +18,7 @@ namespace AgenciaFinal.DataAccess
 
 
       
-        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Alojamiento> Alojamiento { get; set; }
         public DbSet<Reserva> Reserva { get; set; }
     }

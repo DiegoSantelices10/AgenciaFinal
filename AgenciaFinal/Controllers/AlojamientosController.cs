@@ -21,5 +21,10 @@ namespace AgenciaFinal.Controllers
         {
             return View();
         }
+
+        public IActionResult BusquedaDeAlojamiento()
+        {
+            return View();
+        }
     }
 }

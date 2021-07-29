@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Administrador</title>
+    <title>@ViewData["Title"] - Usuario</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="@Url.Content("~/css/estilosPanel.css")">
@@ -14,24 +14,17 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-0 p-0">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Usuarios" asp-action="Index">Administrador</a>
-                
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    
-                </div>
+                <a class="navbar-brand" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuario</a>
             </div>
         </nav>
     </header>
     <div class="container-fluid">
         <div class="d-flex row " >
-
             <div class="col-3">
-              
                 <div class="list-group list-group-flush">
-                   
-                    <a asp-controller="Usuarios" asp-action="Index" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" >Usuarios</a>
-                    <a asp-controller="Reservas" asp-action="Index" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" >Reservas</a>
-                    <a asp-controller="Alojamientos" asp-action="Index" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" >Alojamientos</a>
+                    <a asp-controller="Alojamientos" asp-action="BusquedaDeAlojamiento" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" >Usuarios</a>
+                    <a asp-controller="Reservas" asp-action="MisReservas" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white" >Reservas</a>
+                    <a asp-controller="Usuarios" asp-action="CambiarContrasenia" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">Cambiar Contrase&ntilde;a</a>
                 </div>
             </div>
 

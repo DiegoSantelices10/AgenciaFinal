@@ -33,12 +33,12 @@ namespace AgenciaFinal.Controllers
 
         //Post Create
         [HttpPost]
-        public IActionResult Registro(Cliente cliente)
+        public IActionResult Registro(Usuario usuario)
 
         {
             if (ModelState.IsValid)
             {
-                _context.Cliente.Add(cliente);
+                _context.Usuario.Add(usuario);
                 _context.SaveChanges();
                 TempData["registro"] = "El usuario se ha creado correctamente";
                 return RedirectToAction("Login");
@@ -54,20 +54,25 @@ namespace AgenciaFinal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(Cliente cliente)
+        public IActionResult Login(Usuario usuario)
         {
 
-            var user = _context.Cliente.Where(u => u.Nombre == cliente.Nombre & u.Password == cliente.Password).FirstOrDefault();
-
+            var user = _context.Usuario.Where(u => u.Nombre == usuario.Nombre & u.Password == usuario.Password).FirstOrDefault();
+            
             if (user != null)
-            {
-                return RedirectToAction("Index", "Clientes");
+            { 
+                if (!user.EsAdmin)
+                {
+                return RedirectToAction("BusquedaDeAlojamiento", "Alojamientos");
+                } else {
+            }
+                return RedirectToAction("Index", "Usuarios");
             } else
             {
                 return RedirectToAction("Login", "Home");
             }
 
-        
+
         }
 
 

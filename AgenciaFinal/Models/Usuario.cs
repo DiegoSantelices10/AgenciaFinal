@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AgenciaFinal.Models
 {
-    [Table("Cliente", Schema="dbo")]
-    public class Cliente
+    [Table("Usuario", Schema="dbo")]
+    public class Usuario
     {
         [Key]
         public int Id { get; set; }
@@ -35,8 +35,16 @@ namespace AgenciaFinal.Models
         [Display(Name = "Numero de documento")]
         public string DNI { get; set; }
 
+        
+        [DataType(DataType.Text)]
+        public int IntentosDeLogueos { get; set; }
 
+        
+        [DataType(DataType.Text)]
+        public bool Bloqueado { get; set; }
 
+        [DataType(DataType.Text)]
+        public bool EsAdmin { get; set; }
 
 
 

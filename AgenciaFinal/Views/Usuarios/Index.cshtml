@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgenciaFinal.Models.Cliente>
+﻿@model IEnumerable<AgenciaFinal.Models.Usuario>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -58,7 +58,7 @@
                                 <td>@item.Password</td>
                                 <td>@item.CorreoElectronico</td>
                                 <td>
-                                    <a asp-controller="Clientes" asp-action="DeleteCliente" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                                    <a asp-controller="Usuarios" asp-action="DeleteUsuario" asp-route-id="@item.Id" class="btn btn-danger p-1">Eliminar</a>
                                 </td>
                             </tr>
                         }

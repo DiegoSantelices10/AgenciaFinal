@@ -20,5 +20,11 @@ namespace AgenciaFinal.Controllers
             IEnumerable<Reserva> listaReservas = _context.Reserva;
             return View(listaReservas);
         }
+
+        public IActionResult MisReservas()
+        {
+            IEnumerable<Reserva> listaReservas = _context.Reserva;
+            return View(listaReservas);
+        }
     }
 }

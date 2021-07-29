@@ -1,17 +1,14 @@
 ﻿using AgenciaFinal.DataAccess;
 using AgenciaFinal.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AgenciaFinal.Controllers
 {
-    public class ClientesController : Controller
+    public class UsuariosController : Controller
     {
         private readonly AppDbContext  _context;
-        public ClientesController(AppDbContext context)
+        public UsuariosController(AppDbContext context)
         {
             _context = context;
         }
@@ -20,23 +17,27 @@ namespace AgenciaFinal.Controllers
         public IActionResult Index()
         {
 
-            IEnumerable<Cliente> listaClientes = _context.Cliente;
-            return View(listaClientes);
+            IEnumerable<Usuario> listaUsuarios = _context.Usuario;
+            return View(listaUsuarios);
         }
 
-        public IActionResult DeleteCliente(int? id)
-
+        public IActionResult CambiarContrasenia()
         {
 
+            return View();
+        }
 
-            var cliente = _context.Cliente.Find(id);
+        public IActionResult DeleteUsuario(int? id)
+
+        {
+            var cliente = _context.Usuario.Find(id);
             if (cliente == null)
             {
                 return NotFound();
             }
-            _context.Cliente.Remove(cliente);
+            _context.Usuario.Remove(cliente);
             _context.SaveChanges();
-            TempData["mensaje"] = "El cliente se ha Eliminado correctamente";
+            TempData["mensaje"] = "El usuario se ha Eliminado correctamente";
             return RedirectToAction("Index");
 
         }
