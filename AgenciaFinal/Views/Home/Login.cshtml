@@ -10,47 +10,67 @@
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
+    <link rel="stylesheet" href="@Url.Content("~/css/fontawesome-all.css")">
 
-    <link rel="stylesheet" href="@Url.Content("~/css/misEstilos.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
     <link rel="stylesheet" href="sweetalert2.min.css">
-
+    <link href="@Url.Content("//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i")"
+          rel="stylesheet">
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
 </head>
 <body>
 
-    <div class="wrapper fadeInDown">
-        <div class="titulo text-white">
-            <h1> Agencia de turismo</h1>
 
-        </div>
+    <h1>Agencia De Alojamientos Turisticos</h1>
+    <div class=" w3l-login-form">
+        <h2>Inicio de sesion</h2>
+        <form asp-action="Login" asp-controller="Home" method="POST">
 
-        @if (TempData["registro"] != null)
-        {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                @TempData["registro"]
-                <button type="button" class="close" data-dismiss="alert" arial-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="w3l-form-group">
+                @if (TempData["registro"] != null)
+                {
+                    <div class="alert alert-warning alert-dismissible " style="font-size:15px" role="alert">
+                        @TempData["registro"]
+                        <button type="button" class="close" data-dismiss="alert" arial-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
             </div>
-        }
-
-
-        <div id="formContent">
-
-            <!-- Login Form -->
-            <form method="post" asp-action="Login" asp-controller="Home">
-                <input asp-for="Nombre" id="login" class="fadeIn second userPass" placeholder="Usuario">
-                <input asp-for="Password" id="password" class="fadeIn third userPass" placeholder="Password">
-
-                <div class="form-group buttons">
-                    <input type="submit" class="fadeIn fourth" value="Iniciar Sesion" id="btnEntrar">
-
-                    <button class="fadeIn fourth registro" value="Registrarse" asp-action="Registro" asp-controller="Home">Registrarse</button>
+            <div class=" w3l-form-group">
+                <label asp-for="Nombre"></label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input asp-for="Nombre" class="form-control" placeholder="Username"/>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label asp-for="Password"></label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input asp-for="Password" class="form-control" placeholder="Password" />
+                </div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p class=" w3l-register-p">Don't have an account?<a asp-action="Registro" asp-controller="Home" class="register"> Register</a></p>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="sweetalert2.min.js"></script>

@@ -18,9 +18,9 @@ namespace AgenciaFinal.Models
         [Display(Name ="Nombre de usuario")]
         public string Nombre { get; set; }
 
-        [Required(ErrorMessage = "La contraseña es obligatorio")]
+        [Required(ErrorMessage = "La contraseña es obligatoria")]
         [StringLength(50, ErrorMessage = "el {0} debe ser al menos {2} y máximo {1} caracteres", MinimumLength = 2)]
-        [Display(Name = "Password")]
+        [Display(Name = "Ingrese su Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

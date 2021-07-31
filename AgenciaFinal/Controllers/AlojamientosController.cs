@@ -26,5 +26,9 @@ namespace AgenciaFinal.Controllers
         {
             return View();
         }
+        public IActionResult CargarAlojamiento()
+        {
+            return View();
+        }
     }
 }
