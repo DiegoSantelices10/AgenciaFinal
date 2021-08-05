@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<AgenciaFinal.Models.Usuario>
+
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,14 +15,14 @@
 </head>
 <body>
     <div class="container">
-       
-                <p class="text-white pt-2" style="font-size:20px">REALIZ&Aacute; TU BUSQUEDA DE USUARIO</p>
-            <div class="input-group mt-3 ">
-                <form  asp-action="BuscarUsuario" asp-controller="Usuarios" class="form-inline">
-                    <input  class="form-control mr-2 " style="width:500px" placeholder="Ingresa el DNI" >
-                        <button style="width:100px"  class="btn btn-outline-danger" type="submit">Buscar</button>
-                </form>
-           
+
+        <p class="text-white pt-2" style="font-size:20px">REALIZ&Aacute; TU BUSQUEDA DE USUARIO</p>
+        <div class="input-group mt-3 ">
+            <form asp-action="BuscarUsuario" asp-controller="Usuarios" method="post" class="form-inline" required>
+                <input type="text" class="form-control mr-2" name="dni" style="width:500px" placeholder="Ingresa el DNI">
+                <button style="width:100px" class="btn btn-outline-danger" type="submit">Buscar</button>
+            </form>
+
         </div>
         <hr class="bg-light" />
 
@@ -42,7 +44,24 @@
                 </button>
             </div>
         }
-
+        else if (TempData["UsuarioNoEncontrado"] != null)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                @TempData["UsuarioNoEncontrado"]
+                <button type="button" class="close" data-dismiss="alert" arial-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        else if (TempData["msj1"] != null)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                @TempData["msj1"]
+                <button type="button" class="close" data-dismiss="alert" arial-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
 
         @if (Model.Count() > 0)
         {
@@ -75,10 +94,10 @@
                 </tbody>
             </table>
         }
-        else
-        {
-            <p>No Existen registros</p>
-        }
+
+
+
+        <a asp-controller="Usuarios" asp-action="AgregarUsuario" class="btn btn-light p-1">Agregar un nuevo usuario</a>
     </div>
 
     

@@ -1,4 +1,5 @@
 ﻿using AgenciaFinal.DataAccess;
+using AgenciaFinal.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,23 @@ namespace AgenciaFinal.Controllers
         {
             return View();
         }
-        public IActionResult CargarAlojamiento()
+
+        public IActionResult CargarDeAlojamiento()
         {
+            IEnumerable<Alojamiento> listaAlojamientos = _context.Alojamiento;
+            return View(listaAlojamientos);
+        }
+
+        [HttpPost]
+        public IActionResult CargarAlojamiento(Alojamiento alojamiento)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Alojamiento.Add(alojamiento);
+                _context.SaveChanges();
+                TempData["msj"] = "El alojamiento se ha actualizado correctamente";
+                
+            }
             return View();
         }
     }

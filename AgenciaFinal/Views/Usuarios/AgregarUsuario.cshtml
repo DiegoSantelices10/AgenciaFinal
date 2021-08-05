@@ -1,0 +1,49 @@
+﻿@model AgenciaFinal.Models.Usuario
+@{
+    ViewData["Title"] = "AgregarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>AgregarUsuario</h1>
+
+<div class=" w3l-login-form">
+    <h2>Registro de usuario</h2>
+    <form asp-action="AgregarUsuario" asp-controller="Usuarios" method="POST">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class=" w3l-form-group">
+
+            <div class="group">
+                <input asp-for="Nombre" class="form-control" placeholder="Usuario nuevo" />
+            </div>
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div class=" w3l-form-group">
+            <div class="group">
+                <input asp-for="Password" class="form-control" placeholder="Contraseña nueva" />
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class=" w3l-form-group">
+            <div class="group">
+                <input asp-for="CorreoElectronico" class="form-control" placeholder="Correo Electronico" />
+            </div>
+            <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+        </div>
+        <div class=" w3l-form-group">
+            <div class="group">
+                <input asp-for="DNI" class="form-control" placeholder="Numero De Documento" />
+            </div>
+            <span asp-validation-for="DNI" class="text-danger"></span>
+        </div>
+        <div class=" w3l-form-group">
+            <div class="group">
+                <input asp-for="EsAdmin" class="form-control" placeholder="Es admin?" />
+            </div>
+            <span asp-validation-for="EsAdmin" class="text-danger"></span>
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+        </div>
+
+

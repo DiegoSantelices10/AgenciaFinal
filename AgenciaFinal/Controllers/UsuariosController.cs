@@ -17,6 +17,7 @@ namespace AgenciaFinal.Controllers
         }
 
    
+
         public IActionResult Index()
         {
 
@@ -33,8 +34,6 @@ namespace AgenciaFinal.Controllers
        [HttpPost]
         public IActionResult EditUsuario(Usuario usuario)
         {
-
-
             if (ModelState.IsValid)
             {
                 _context.Usuario.Update(usuario);
@@ -44,19 +43,32 @@ namespace AgenciaFinal.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public IActionResult AgregarUsuario(Usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Usuario.Add(usuario);
+                _context.SaveChanges();
+                TempData["msj1"] = "El usuario se ha creado correctamente";
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
 
-
+        public IActionResult AgregarUsuario()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult EditUsuario(int? id)
         {
             if(id == null || id == 0)
-
             {
                 return NotFound();
             }
             var user = _context.Usuario.Find(id);
-
             if(user == null)
             {
                 return NotFound();
@@ -64,8 +76,6 @@ namespace AgenciaFinal.Controllers
 
             return View(user);
         }
-
-
 
 
         public IActionResult DeleteUsuario(int? id)
@@ -83,27 +93,30 @@ namespace AgenciaFinal.Controllers
 
         }
 
-        public IActionResult BuscarUsuario(string dni)
 
+
+
+
+        [HttpPost]
+        public IActionResult BuscarUsuario()
         {
-            var usuario = _context.Usuario.Find(dni);
+            string documento = HttpContext.Request.Form["dni"];
+
             IEnumerable<Usuario> listaUsuarios;
+        
+            listaUsuarios = _context.Usuario.Where(u => u.DNI == documento);
 
-            listaUsuarios.ToList().Add(usuario);
-
-            
-
-            if (usuario == null)
+            if (listaUsuarios.Count() == 0)
             {
-                TempData["UsuarioNoEncontrado"] = "El usuario no ha sido encontrado";
-                return RedirectToAction("Index");
-            } else
-            {
-
+            TempData["UsuarioNoEncontrado"] = "El usuario no ha sido encontrado";
+               
+                return View("Index", listaUsuarios);
 
             }
 
-            return View();
+            return View("Index", listaUsuarios);
+
+
         }
     }
 }
