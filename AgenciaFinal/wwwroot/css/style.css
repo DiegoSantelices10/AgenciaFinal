@@ -1,9 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(/img/cover4.jpg);
+    background-image: url(/img/Hotel1.jpg);
     background-repeat: no-repeat;
-    height: 100vh;
+    background-position: center center;
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Raleway', sans-serif;
@@ -83,7 +83,10 @@ input[type="text"]:focus,
 input[type="password"]:focus {
     outline: none;
 }
-
+button.close {
+    left:200px;
+    margin: -2px;
+}
 button {
     background: #fc3955;
     color: #ffffff;

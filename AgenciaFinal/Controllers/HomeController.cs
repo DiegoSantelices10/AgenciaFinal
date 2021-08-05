@@ -69,6 +69,8 @@ namespace AgenciaFinal.Controllers
                 return RedirectToAction("Index", "Usuarios");
             } else
             {
+
+                TempData["verificacion"] = "El usuario o contraseña son incorrectos";
                 return RedirectToAction("Login", "Home");
             }
 

@@ -43,7 +43,7 @@ namespace AgenciaFinal.Models
         [DataType(DataType.Text)]
         public bool Bloqueado { get; set; }
 
-        [DataType(DataType.Text)]
+     
         public bool EsAdmin { get; set; }
 
 

@@ -30,12 +30,24 @@
             <div class="w3l-form-group">
                 @if (TempData["registro"] != null)
                 {
-                    <div class="alert alert-warning alert-dismissible " style="font-size:15px" role="alert">
+
+
+                    <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
                         @TempData["registro"]
-                        <button type="button" class="close" data-dismiss="alert" arial-label="Close">
+                        <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                }
+                else if (TempData["verificacion"] != null)
+                {
+                    <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
+                        @TempData["verificacion"]
+                        <button type="button" class="close btnclose" data-dismiss="alert"  arial-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
                 }
             </div>
             <div class=" w3l-form-group">
@@ -54,7 +66,7 @@
             </div>
             <button type="submit">Login</button>
         </form>
-        <p class=" w3l-register-p">Don't have an account?<a asp-action="Registro" asp-controller="Home" class="register"> Register</a></p>
+        <p class=" w3l-register-p">Sino estas registrado ingresa<a asp-action="Registro" asp-controller="Home" class="register"> Aqui</a></p>
     </div>
 
 
