@@ -87,7 +87,11 @@ namespace AgenciaFinal.Controllers
 
         {
             var usuario = _context.Usuario.Find(dni);
-                
+            IEnumerable<Usuario> listaUsuarios;
+
+            listaUsuarios.ToList().Add(usuario);
+
+            
 
             if (usuario == null)
             {

@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace AgenciaFinal.Models
 {
-    public class Hotel
+    public class Agencia
     {
         public int id { get; set; }
+        public static int CantAloj { get; set; }
         public Alojamiento id_alojamiento { get; set; }
+        public int cantAlojamientos { get; set; }
 
-        public double precio_por_persona { get; set; }
     }
 }

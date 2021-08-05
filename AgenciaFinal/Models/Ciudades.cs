@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 
 namespace AgenciaFinal.Models
 {
-    public class Hotel
+    public class Ciudades
     {
         public int id { get; set; }
-        public Alojamiento id_alojamiento { get; set; }
+        public string nombre { get; set; }
 
-        public double precio_por_persona { get; set; }
+        public Ciudades()
+        {
+
+        }
     }
 }
