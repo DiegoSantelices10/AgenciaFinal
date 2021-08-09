@@ -1,106 +1,51 @@
 ﻿@model IEnumerable<AgenciaFinal.Models.Usuario>
 
-
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h1>Index</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div class="container">
-
-        <p class="text-white pt-2" style="font-size:20px">REALIZ&Aacute; TU BUSQUEDA DE USUARIO</p>
-        <div class="input-group mt-3 ">
-            <form asp-action="BuscarUsuario" asp-controller="Usuarios" method="post" class="form-inline" required>
-                <input type="text" class="form-control mr-2" name="dni" style="width:500px" placeholder="Ingresa el DNI">
-                <button style="width:100px" class="btn btn-outline-danger" type="submit">Buscar</button>
-            </form>
-
-        </div>
-        <hr class="bg-light" />
-
-        @if (TempData["mensaje"] != null)
-        {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                @TempData["mensaje"]
-                <button type="button" class="close" data-dismiss="alert" arial-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-        else if (TempData["msj"] != null)
-        {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                @TempData["msj"]
-                <button type="button" class="close" data-dismiss="alert" arial-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-        else if (TempData["UsuarioNoEncontrado"] != null)
-        {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                @TempData["UsuarioNoEncontrado"]
-                <button type="button" class="close" data-dismiss="alert" arial-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-        else if (TempData["msj1"] != null)
-        {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                @TempData["msj1"]
-                <button type="button" class="close" data-dismiss="alert" arial-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-
-        @if (Model.Count() > 0)
-        {
-            <table class="tabla table table-bordered table-striped text-white">
-                <thead>
-                    <tr class="fila">
-                        <td>@Html.DisplayNameFor(m => m.Id)</td>
-                        <td>@Html.DisplayNameFor(m => m.Nombre)</td>
-                        <td>@Html.DisplayNameFor(m => m.DNI)</td>
-                        <td>@Html.DisplayNameFor(m => m.Password)</td>
-                        <td>@Html.DisplayNameFor(m => m.CorreoElectronico)</td>
-                        <td>Acciones</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Nombre</td>
-                            <td>@item.DNI</td>
-                            <td>@item.Password</td>
-                            <td>@item.CorreoElectronico</td>
-                            <td>
-                                <a asp-controller="Usuarios" asp-action="DeleteUsuario" asp-route-id="@item.Id" class="btn btn-danger p-1">Eliminar</a>
-                                <a asp-controller="Usuarios" asp-action="EditUsuario" asp-route-id="@item.Id" class="btn btn-primary p-1">Editar</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-
-
-
-        <a asp-controller="Usuarios" asp-action="AgregarUsuario" class="btn btn-light p-1">Agregar un nuevo usuario</a>
-    </div>
-
-    
-</body>
-</html>
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.Password)</th>
+            <th>@Html.DisplayNameFor(model => model.CorreoElectronico)</th>
+            <th>@Html.DisplayNameFor(model => model.DNI)</th>
+            <th>@Html.DisplayNameFor(model => model.Bloqueado)</th>
+            <th>@Html.DisplayNameFor(model => model.EsAdmin)</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorreoElectronico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bloqueado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsAdmin)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
