@@ -18,5 +18,6 @@ namespace AgenciaFinal.Models
         public Usuario id_usuario { get; set; }
         public float PDesde { get; set; }
         public float Phasta { get; set; }
+
     }
 }

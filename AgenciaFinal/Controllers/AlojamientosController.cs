@@ -19,10 +19,18 @@ namespace AgenciaFinal.Controllers
             _context = context;
         }
 
+
+
+        public IEnumerable<Alojamiento> aloja { get; set; }
         // GET: Alojamientoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Alojamiento.ToListAsync());
+            aloja = await _context.Alojamiento
+            .Include(c => c.hotel)
+            .Include(c => c.cabania)
+                .AsNoTracking()
+                .ToListAsync();
+            return View(aloja);
         }
 
         public async Task<IActionResult> Listado()
@@ -36,13 +44,20 @@ namespace AgenciaFinal.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento alojamiento)
+        public async Task<IActionResult> BusquedaDeAlojamiento(Reserva reserva)
         {
 
-            var alojamientos = _context.Alojamiento.Where(u => u.ciudad == alojamiento.ciudad).FirstOrDefault();
-           
+            var a = reserva;
 
-            return View("Index", alojamiento);
+            var aloja = _context.Reserva.Include(c => c.id_alojamiento)
+                  .Where(u => u.id_alojamiento.ciudad == reserva.id_alojamiento.ciudad).FirstOrDefault();
+
+            if (aloja != null)
+            {
+                return View("Index", aloja);
+
+            }
+            return View(aloja);
         }
 
         // GET: Alojamientoes/Details/5
