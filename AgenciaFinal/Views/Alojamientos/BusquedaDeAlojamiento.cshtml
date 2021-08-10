@@ -8,7 +8,7 @@
 
 
 
-<div >
+<div>
     <form style="font-size:small" method="post" asp-action="BusquedaDeAlojamiento" asp-controller="Alojamientos">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -47,7 +47,7 @@
                 <input asp-for="id_alojamiento.cantidadDePersonas" class="form-control" />
                 <span asp-validation-for="id_alojamiento.cantidadDePersonas" class="text-danger"></span>
             </div>
-            
+
         </div>
         <div class="form-group">
             <input type="submit" value="Buscar alojamiento" class="btn btn-primary" />
