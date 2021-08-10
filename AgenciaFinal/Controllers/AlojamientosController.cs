@@ -25,6 +25,11 @@ namespace AgenciaFinal.Controllers
             return View(await _context.Alojamiento.ToListAsync());
         }
 
+        public async Task<IActionResult> Listado()
+        {
+            return View(await _context.Alojamiento.ToListAsync());
+        }
+
         public async Task<IActionResult> BusquedaDeAlojamiento()
         {
             return View();
@@ -33,9 +38,6 @@ namespace AgenciaFinal.Controllers
         [HttpPost]
         public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento alojamiento)
         {
-            
-
-
 
             var alojamientos = _context.Alojamiento.Where(u => u.ciudad == alojamiento.ciudad).FirstOrDefault();
            

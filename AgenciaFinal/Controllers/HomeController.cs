@@ -69,7 +69,6 @@ namespace AgenciaFinal.Controllers
                 }
             } else
             {
-
                 TempData["verificacion"] = "El usuario o contraseña son incorrectos";
                 return RedirectToAction("Login", "Home");
             }
