@@ -63,10 +63,10 @@ namespace AgenciaFinal.Controllers
             { 
                 if (!user.EsAdmin)
                 {
-                return RedirectToAction("BusquedaDeAlojamiento", "Alojamientos");
+                  return RedirectToAction("BusquedaDeAlojamiento", "Alojamientos");
                 } else {
-            }
-                return RedirectToAction("Index", "Usuarios");
+                  return RedirectToAction("Index", "Usuarios");
+                }
             } else
             {
 
