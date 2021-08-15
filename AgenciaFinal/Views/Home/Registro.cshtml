@@ -34,31 +34,34 @@
                 <div class="group">
                     <input asp-for="nombre" class="form-control" placeholder="Usuario nuevo" />
                 </div>
-                    <span asp-validation-for="nombre" class="text-danger"></span>
+                <span asp-validation-for="nombre" class="text-danger"></span>
             </div>
             <div class=" w3l-form-group">
                 <div class="group">
                     <input asp-for="password" class="form-control" placeholder="Contraseña nueva" />
                 </div>
-                    <span asp-validation-for="password" class="text-danger"></span>
+                <span asp-validation-for="password" class="text-danger"></span>
             </div>
             <div class=" w3l-form-group">
                 <div class="group">
                     <input asp-for="correoElectronico" class="form-control" placeholder="Correo Electronico" />
                 </div>
-                    <span asp-validation-for="correoElectronico" class="text-danger"></span>
+                <span asp-validation-for="correoElectronico" class="text-danger"></span>
             </div>
             <div class=" w3l-form-group">
                 <div class="group">
                     <input asp-for="DNI" class="form-control" placeholder="Numero De Documento" />
                 </div>
-                    <span asp-validation-for="DNI" class="text-danger" ></span>
+                <span asp-validation-for="DNI" class="text-danger"></span>
             </div>
             <button type="submit">Registrarse</button>
         </form>
 
-
+        <div>
+            <a asp-action="Login" class="btn btn-warning">VOLVER</a>
         </div>
+
+    </div>
 
 
             

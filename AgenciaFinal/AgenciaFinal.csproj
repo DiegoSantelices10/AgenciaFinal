@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Usuarios\Index - Copia.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\img\fondoDePantalla.jpg" />
     <None Include="wwwroot\img\logoUsuario.png" />
   </ItemGroup>

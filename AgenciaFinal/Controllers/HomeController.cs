@@ -63,7 +63,7 @@ namespace AgenciaFinal.Controllers
             { 
                 if (!user.esAdmin)
                 {
-                  return RedirectToAction("BusquedaDeAlojamiento", "Alojamientos");
+                  return RedirectToAction("IndexUsuario", "Usuarios");
                 } else {
                   return RedirectToAction("Index", "Usuarios");
                 }

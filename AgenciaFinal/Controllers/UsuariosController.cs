@@ -19,11 +19,61 @@ namespace AgenciaFinal.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> CerrarSesion()
+        {
+            //METODO SIN VISTA QUE ROMPE LA SESSION
+            return RedirectToAction("Login", "Home");
+        }
+
+        //****************************************************************METODOS CONTROLADOR USUARIO DE USUARIO SOLO
+        public IEnumerable<Alojamiento> aloja { get; set; }
+        public async Task<IActionResult> IndexUsuario()
+        {
+            aloja = await _context.Alojamiento
+            .Include(c => c.hotel)
+            .Include(c => c.cabania)
+                .AsNoTracking()
+                .ToListAsync();
+            return View(aloja);
+        }
+
+        public async Task<IActionResult> BusquedaDeAlojamiento()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento alojamiento)
+        {
+            return RedirectToAction("ResultadoBusqueda", "Usuarios");
+        }
+
+        public async Task<IActionResult> ResultadoBusqueda()
+        {
+            return View();
+        }
+
+
+        public async Task<IActionResult> MisDatos()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> MisReservas()
+        {
+            return View();
+        }
+
+
+        //****************************************************************METODOS COTROLADOR ADMINISTRADOR
+
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuario.ToListAsync());
         }
+
+
 
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -81,10 +131,6 @@ namespace AgenciaFinal.Controllers
             return View(usuario);
         }
 
-        public async Task<IActionResult> MisDatos()
-        {
-            return View();
-        }
 
 
         // POST: Usuarios/Edit/5

@@ -23,13 +23,11 @@
             <div class="col-3">
                 <div class="list-group list-group-flush">
                     <a asp-controller="Usuarios" asp-action="MisDatos" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">Mis Datos </a>
-                    <a asp-controller="Reservas" asp-action="MisReservas" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">Mis Reservas</a>
+                    <a asp-controller="Usuarios" asp-action="MisReservas" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">Mis Reservas</a>
                     <a asp-controller="Usuarios" asp-action="CerrarSesion" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">CerrarSesion </a>
 
                 </div>
             </div>
-
-
             <div class="col-9">
                 <main role="main">
                     @RenderBody()
