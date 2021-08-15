@@ -57,11 +57,11 @@ namespace AgenciaFinal.Controllers
         public IActionResult Login(Usuario usuario)
         {
 
-            var user = _context.Usuario.Where(u => u.Nombre == usuario.Nombre & u.Password == usuario.Password).FirstOrDefault();
+            var user = _context.Usuario.Where(u => u.nombre == usuario.nombre & u.password == usuario.password).FirstOrDefault();
             
             if (user != null)
             { 
-                if (!user.EsAdmin)
+                if (!user.esAdmin)
                 {
                   return RedirectToAction("BusquedaDeAlojamiento", "Alojamientos");
                 } else {

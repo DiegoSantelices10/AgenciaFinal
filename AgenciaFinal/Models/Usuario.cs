@@ -11,24 +11,24 @@ namespace AgenciaFinal.Models
     public class Usuario
     {
         [Key]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [Required(ErrorMessage ="El nombre de usuario es obligatorio")]
         [StringLength(50, ErrorMessage = "el {0} debe ser al menos {2} y máximo {1} caracteres", MinimumLength = 2)]
         [Display(Name ="Usuario")]
-        public string Nombre { get; set; }
+        public string nombre { get; set; }
 
         [Required(ErrorMessage = "La contraseña es obligatoria")]
         [StringLength(50, ErrorMessage = "el {0} debe ser al menos {2} y máximo {1} caracteres", MinimumLength = 2)]
         [Display(Name = "Contraseña")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string password { get; set; }
 
 
         [Required(ErrorMessage = "El correo es obligatorio")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Correo Electronico")]
-        public string CorreoElectronico { get; set; }
+        public string correoElectronico { get; set; }
 
         [Required(ErrorMessage = "El DNI es obligatorio")]
         [DataType(DataType.Text)]
@@ -37,14 +37,14 @@ namespace AgenciaFinal.Models
 
         
         [DataType(DataType.Text)]
-        public int IntentosDeLogueos { get; set; }
+        public int intentosDeLogueos { get; set; }
 
-        
-      
-        public bool Bloqueado { get; set; }
 
-     
-        public bool EsAdmin { get; set; }
+        [Display(Name = "Bloqueado")]
+        public bool bloqueado { get; set; }
+
+        [Display(Name = "Administrador")]
+        public bool esAdmin { get; set; }
 
 
 

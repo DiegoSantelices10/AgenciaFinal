@@ -34,7 +34,7 @@ namespace AgenciaFinal.Controllers
             }
 
             var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -94,7 +94,7 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Password,CorreoElectronico,DNI,IntentosDeLogueos,Bloqueado,EsAdmin")] Usuario usuario)
         {
-            if (id != usuario.Id)
+            if (id != usuario.id)
             {
                 return NotFound();
             }
@@ -108,7 +108,7 @@ namespace AgenciaFinal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuarioExists(usuario.Id))
+                    if (!UsuarioExists(usuario.id))
                     {
                         return NotFound();
                     }
@@ -131,7 +131,7 @@ namespace AgenciaFinal.Controllers
             }
 
             var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -153,7 +153,7 @@ namespace AgenciaFinal.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return _context.Usuario.Any(e => e.Id == id);
+            return _context.Usuario.Any(e => e.id == id);
         }
     }
 }

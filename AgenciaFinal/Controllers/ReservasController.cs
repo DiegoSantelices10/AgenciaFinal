@@ -34,7 +34,7 @@ namespace AgenciaFinal.Controllers
             }
 
             var reserva = await _context.Reserva
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (reserva == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,contador,FDesde,FHasta,precio")] Reserva reserva)
         {
-            if (id != reserva.Id)
+            if (id != reserva.id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace AgenciaFinal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ReservaExists(reserva.Id))
+                    if (!ReservaExists(reserva.id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace AgenciaFinal.Controllers
             }
 
             var reserva = await _context.Reserva
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (reserva == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace AgenciaFinal.Controllers
 
         private bool ReservaExists(int id)
         {
-            return _context.Reserva.Any(e => e.Id == id);
+            return _context.Reserva.Any(e => e.id == id);
         }
     }
 }

@@ -10,7 +10,9 @@ namespace AgenciaFinal.Models
     {
 
         [Key]
-        public int Id { get; set; }
+        [Display(Name = "ID Alojamiento")]
+
+        public int id { get; set; }
 
         [Display(Name = "Barrio")]
         public string barrio { get; set; }
@@ -26,7 +28,7 @@ namespace AgenciaFinal.Models
         public string ciudad { get; set; }
 
 
-        [Display(Name = "Es Hotel")]
+        [Display(Name = "Es Hotel")] 
         public bool esHotel { get; set; }
 
         public int cantidadDePersonas { get; set; }

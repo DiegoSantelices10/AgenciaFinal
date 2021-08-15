@@ -69,7 +69,7 @@ namespace AgenciaFinal.Controllers
             }
 
             var alojamiento = await _context.Alojamiento
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (alojamiento == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,barrio,estrellas,cantidadDePersonas,tv,ciudad,cantidad_de_habitaciones,precio_por_dia,precio_por_persona,cantidadDeBanios,esHotel")] Alojamiento alojamiento)
         {
-            if (id != alojamiento.Id)
+            if (id != alojamiento.id)
             {
                 return NotFound();
             }
@@ -137,7 +137,7 @@ namespace AgenciaFinal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AlojamientoExists(alojamiento.Id))
+                    if (!AlojamientoExists(alojamiento.id))
                     {
                         return NotFound();
                     }
@@ -160,7 +160,7 @@ namespace AgenciaFinal.Controllers
             }
 
             var alojamiento = await _context.Alojamiento
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (alojamiento == null)
             {
                 return NotFound();
@@ -182,7 +182,7 @@ namespace AgenciaFinal.Controllers
 
         private bool AlojamientoExists(int id)
         {
-            return _context.Alojamiento.Any(e => e.Id == id);
+            return _context.Alojamiento.Any(e => e.id == id);
         }
     }
 }

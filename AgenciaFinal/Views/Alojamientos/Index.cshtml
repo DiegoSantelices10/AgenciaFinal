@@ -2,16 +2,17 @@
 
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Alojamientos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Panel Alojamientos</h1>
 
 <p>
     <a asp-action="Create">Crear un Alojamiento</a>
 </p>
 <table class="table">
+    <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.barrio)</th>
             <th>@Html.DisplayNameFor(model => model.ciudad)</th>
@@ -41,9 +42,9 @@
                     @Html.DisplayFor(modelItem => item.esHotel)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
                 </td>
             </tr>
         }

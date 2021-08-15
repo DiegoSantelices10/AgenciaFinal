@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<AgenciaFinal.Models.Reserva>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reservas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Panel Reservas</h1>
 
 <p>
     <a asp-action="Create">Crear una nueva Reserva</a>
@@ -14,19 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.contador)
+                @Html.DisplayNameFor(model => model.id_usuario.nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FDesde)
+                @Html.DisplayNameFor(model => model.id_alojamiento.id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FHasta)
+                @Html.DisplayNameFor(model => model.id_alojamiento.ciudad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PDesde)
+                @Html.DisplayNameFor(model => model.precio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phasta)
+                @Html.DisplayNameFor(model => model.fDesde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fHasta)
             </th>
             <th></th>
         </tr>
@@ -35,24 +38,27 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.contador)
+                @Html.DisplayFor(modelItem => item.id_usuario.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FDesde)
+                @Html.DisplayFor(modelItem => item.id_alojamiento.id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FHasta)
+                @Html.DisplayFor(modelItem => item.id_alojamiento.ciudad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PDesde)
+                @Html.DisplayFor(modelItem => item.precio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Phasta)
+                @Html.DisplayFor(modelItem => item.fDesde)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                @Html.DisplayFor(modelItem => item.fHasta)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
             </td>
         </tr>
 }

@@ -9,15 +9,21 @@ namespace AgenciaFinal.Models
     public class Reserva
     {
         [Key]
-        public int Id { get; set; }
+        [Display(Name = "ID")]
+        
+        public int id { get; set; }
 
         public int contador { get; set; } = 0;
-        public DateTime FDesde { get; set; }
-        public DateTime FHasta { get; set; }
+        [Display(Name = "Fecha Desde")]
+        public DateTime fDesde { get; set; }
+        [Display(Name = "Fecha Hasta")]
+        public DateTime fHasta { get; set; }
         public Alojamiento id_alojamiento { get; set; }
         public Usuario id_usuario { get; set; }
-        public float PDesde { get; set; }
-        public float Phasta { get; set; }
+        [Display(Name = "Precio Total")]
+        public float precio { get; set; }
+        public float pDesde { get; set; }
+        public float pHasta { get; set; }
 
     }
 }

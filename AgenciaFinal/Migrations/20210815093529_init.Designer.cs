@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgenciaFinal.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210809205706_m6")]
-    partial class m6
+    [Migration("20210815093529_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,19 +31,19 @@ namespace AgenciaFinal.Migrations
                     b.Property<int>("cantAlojamientos")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_alojamientoId")
+                    b.Property<int?>("id_alojamientoid")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
-                    b.HasIndex("id_alojamientoId");
+                    b.HasIndex("id_alojamientoid");
 
                     b.ToTable("Agencia");
                 });
 
             modelBuilder.Entity("AgenciaFinal.Models.Alojamiento", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -51,13 +51,10 @@ namespace AgenciaFinal.Migrations
                     b.Property<string>("barrio")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("cantidadDeBanios")
+                    b.Property<int?>("cabaniaid")
                         .HasColumnType("int");
 
                     b.Property<int>("cantidadDePersonas")
-                        .HasColumnType("int");
-
-                    b.Property<int>("cantidad_de_habitaciones")
                         .HasColumnType("int");
 
                     b.Property<string>("ciudad")
@@ -69,18 +66,40 @@ namespace AgenciaFinal.Migrations
                     b.Property<string>("estrellas")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("precio_por_dia")
-                        .HasColumnType("float");
-
-                    b.Property<double>("precio_por_persona")
-                        .HasColumnType("float");
+                    b.Property<int?>("hotelid")
+                        .HasColumnType("int");
 
                     b.Property<bool>("tv")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
+
+                    b.HasIndex("cabaniaid");
+
+                    b.HasIndex("hotelid");
 
                     b.ToTable("Alojamiento");
+                });
+
+            modelBuilder.Entity("AgenciaFinal.Models.Cabania", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("banios")
+                        .HasColumnType("int");
+
+                    b.Property<int>("habitaciones")
+                        .HasColumnType("int");
+
+                    b.Property<double>("precioPorDia")
+                        .HasColumnType("float");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Cabania");
                 });
 
             modelBuilder.Entity("AgenciaFinal.Models.Ciudades", b =>
@@ -98,78 +117,96 @@ namespace AgenciaFinal.Migrations
                     b.ToTable("Ciudades");
                 });
 
-            modelBuilder.Entity("AgenciaFinal.Models.Reserva", b =>
+            modelBuilder.Entity("AgenciaFinal.Models.Hotel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("FDesde")
-                        .HasColumnType("datetime2");
+                    b.Property<double>("precio_por_persona")
+                        .HasColumnType("float");
 
-                    b.Property<DateTime>("FHasta")
-                        .HasColumnType("datetime2");
+                    b.HasKey("id");
 
-                    b.Property<float>("PDesde")
-                        .HasColumnType("real");
+                    b.ToTable("Hotel");
+                });
 
-                    b.Property<float>("Phasta")
-                        .HasColumnType("real");
+            modelBuilder.Entity("AgenciaFinal.Models.Reserva", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("contador")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_alojamientoId")
+                    b.Property<DateTime>("fDesde")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("fHasta")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("id_alojamientoid")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_usuarioId")
+                    b.Property<int?>("id_usuarioid")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<float>("pDesde")
+                        .HasColumnType("real");
 
-                    b.HasIndex("id_alojamientoId");
+                    b.Property<float>("pHasta")
+                        .HasColumnType("real");
 
-                    b.HasIndex("id_usuarioId");
+                    b.Property<float>("precio")
+                        .HasColumnType("real");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("id_alojamientoid");
+
+                    b.HasIndex("id_usuarioid");
 
                     b.ToTable("Reserva");
                 });
 
             modelBuilder.Entity("AgenciaFinal.Models.Usuario", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Bloqueado")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("CorreoElectronico")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DNI")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("EsAdmin")
+                    b.Property<bool>("bloqueado")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IntentosDeLogueos")
+                    b.Property<string>("correoElectronico")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("esAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("intentosDeLogueos")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("password")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Usuario", "dbo");
                 });
@@ -178,20 +215,35 @@ namespace AgenciaFinal.Migrations
                 {
                     b.HasOne("AgenciaFinal.Models.Alojamiento", "id_alojamiento")
                         .WithMany()
-                        .HasForeignKey("id_alojamientoId");
+                        .HasForeignKey("id_alojamientoid");
 
                     b.Navigation("id_alojamiento");
+                });
+
+            modelBuilder.Entity("AgenciaFinal.Models.Alojamiento", b =>
+                {
+                    b.HasOne("AgenciaFinal.Models.Cabania", "cabania")
+                        .WithMany()
+                        .HasForeignKey("cabaniaid");
+
+                    b.HasOne("AgenciaFinal.Models.Hotel", "hotel")
+                        .WithMany()
+                        .HasForeignKey("hotelid");
+
+                    b.Navigation("cabania");
+
+                    b.Navigation("hotel");
                 });
 
             modelBuilder.Entity("AgenciaFinal.Models.Reserva", b =>
                 {
                     b.HasOne("AgenciaFinal.Models.Alojamiento", "id_alojamiento")
                         .WithMany()
-                        .HasForeignKey("id_alojamientoId");
+                        .HasForeignKey("id_alojamientoid");
 
                     b.HasOne("AgenciaFinal.Models.Usuario", "id_usuario")
                         .WithMany()
-                        .HasForeignKey("id_usuarioId");
+                        .HasForeignKey("id_usuarioid");
 
                     b.Navigation("id_alojamiento");
 
