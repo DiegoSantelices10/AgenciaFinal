@@ -47,7 +47,9 @@ namespace AgenciaFinal.Models
         public bool esAdmin { get; set; }
 
 
-
-
+        public Usuario()
+        {
+            
+        }
     }
 }

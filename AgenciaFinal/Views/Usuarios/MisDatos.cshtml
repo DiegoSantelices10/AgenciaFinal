@@ -1,11 +1,63 @@
-﻿@model IEnumerable<AgenciaFinal.Models.Usuario>
-
+﻿@model AgenciaFinal.Models.Usuario
 
 @{
     ViewData["Title"] = "MisDatos";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h1>MisDatos</h1>
+<h1>Details</h1>
 
-<a asp-action="IndexUsuario" class="btn btn-warning">VOLVER</a>
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.password)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.correoElectronico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.correoElectronico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DNI)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DNI)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.intentosDeLogueos)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.intentosDeLogueos)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.bloqueado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.bloqueado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.esAdmin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.esAdmin)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditUsuario" asp-route-id="@Model.id">EDITAR</a> |
+    <a asp-action="IndexUsuario" class="btn btn-warning">VOLVER</a>
+</div>
+
+

@@ -27,7 +27,9 @@ namespace AgenciaFinal.Controllers
 
         //****************************************************************METODOS CONTROLADOR USUARIO DE USUARIO SOLO
         public IEnumerable<Alojamiento> aloja { get; set; }
-        public async Task<IActionResult> IndexUsuario()
+
+
+    public async Task<IActionResult> IndexUsuario()
         {
             aloja = await _context.Alojamiento
             .Include(c => c.hotel)
@@ -56,8 +58,24 @@ namespace AgenciaFinal.Controllers
 
         public async Task<IActionResult> MisDatos()
         {
-            return View();
+
+
+            var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
+
+            return View(usuario);
         }
+
+        public async Task<IActionResult> EditUsuario()
+        {
+
+            var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return View(usuario);
+        }
+
 
         public async Task<IActionResult> MisReservas()
         {
