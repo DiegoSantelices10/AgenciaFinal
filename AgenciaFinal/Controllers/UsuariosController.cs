@@ -79,7 +79,15 @@ namespace AgenciaFinal.Controllers
 
         public async Task<IActionResult> MisReservas()
         {
-            return View();
+            var reservas = _context.Reserva.Where(u => u.id_usuario.nombre == Global.nombre & u.id_usuario.password == Global.password);
+
+            if (reservas != null)
+            {
+                return View(reservas);
+            } else
+            {
+                return View();
+            }
         }
 
 
