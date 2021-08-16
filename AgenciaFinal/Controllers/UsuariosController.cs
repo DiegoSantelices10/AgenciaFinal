@@ -37,6 +37,23 @@ namespace AgenciaFinal.Controllers
                 .AsNoTracking()
                 .ToListAsync();
             return View(aloja);
+
+        }
+
+        public async Task<IActionResult> DetailsAlojamiento(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var alojamiento = await _context.Alojamiento
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (alojamiento == null)
+            {
+                return NotFound();
+            }
+            return View(alojamiento);
         }
 
         public async Task<IActionResult> BusquedaDeAlojamiento()
@@ -44,18 +61,25 @@ namespace AgenciaFinal.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento alojamiento)
         {
+           /* var aloja = _context.Reserva.Include(c => c.id_alojamiento)
+                  .Where(u => u.id_alojamiento.ciudad == Global..id_alojamiento.ciudad).FirstOrDefault();*/
+            if (aloja != null)
+            {
+                return View("Index", aloja);
+            }
+
             return RedirectToAction("ResultadoBusqueda", "Usuarios");
         }
 
         public async Task<IActionResult> ResultadoBusqueda()
         {
+
             return View();
         }
-
-
         public async Task<IActionResult> MisDatos()
         {
 
@@ -99,6 +123,9 @@ namespace AgenciaFinal.Controllers
                             _context.Update(usuario);
                             await _context.SaveChangesAsync();
 
+                            TempData["guardado"] = "Usuario Actualizado";
+
+
                             return RedirectToAction("MisDatos", "Usuarios");
                         }
                     } 
@@ -140,10 +167,20 @@ namespace AgenciaFinal.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
+            if(TempData["guardado"] != null)
+            {
+                TempData["guardado"] = "Usuario Actualizado con exito";
+            }
+            if (TempData["eliminado"] != null)
+            {
+                TempData["eliminado"] = "Usuario Eliminado con exito";
+            }
+            if (TempData["creador"] != null)
+            {
+                TempData["creador"] = "Usuario Creado con exito";
+            }
             return View(await _context.Usuario.ToListAsync());
         }
-
-
 
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -174,12 +211,13 @@ namespace AgenciaFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Password,CorreoElectronico,DNI,IntentosDeLogueos,Bloqueado,EsAdmin")] Usuario usuario)
+        public async Task<IActionResult> Create(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
+                TempData["creador"] = "Usuario creado con exito";
                 return RedirectToAction(nameof(Index));
             }
             return View(usuario);
@@ -221,6 +259,7 @@ namespace AgenciaFinal.Controllers
                 {
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
+                    TempData["guardado"] = "Usuario Actualizado";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -264,6 +303,7 @@ namespace AgenciaFinal.Controllers
             var usuario = await _context.Usuario.FindAsync(id);
             _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
+            TempData["eliminado"] = "Usuario Eliminado con exito";
             return RedirectToAction(nameof(Index));
         }
 

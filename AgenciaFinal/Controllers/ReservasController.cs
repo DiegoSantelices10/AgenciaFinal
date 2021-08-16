@@ -22,6 +22,18 @@ namespace AgenciaFinal.Controllers
         // GET: Reservas
         public async Task<IActionResult> Index()
         {
+            if (TempData["reservaeditado"] != null)
+            {
+                TempData["reservaeditado"] = "Reserva Actualizada con exito";
+            }
+            if (TempData["reservaeliminada"] != null)
+            {
+                TempData["reservaeliminada"] = "Reserva Eliminada con exito";
+            }
+            if (TempData["reservacreada"] != null)
+            {
+                TempData["reservacreada"] = "Reserva Creada con exito";
+            }
             return View(await _context.Reserva.ToListAsync());
         }
 
@@ -54,12 +66,13 @@ namespace AgenciaFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,contador,FDesde,FHasta,precio")] Reserva reserva)
+        public async Task<IActionResult> Create(Reserva reserva)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(reserva);
                 await _context.SaveChangesAsync();
+                TempData["reservacreada"] = "Reserva creada con exito";
                 return RedirectToAction(nameof(Index));
             }
             return View(reserva);
@@ -86,7 +99,7 @@ namespace AgenciaFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,contador,FDesde,FHasta,precio")] Reserva reserva)
+        public async Task<IActionResult> Edit(int id, Reserva reserva)
         {
             if (id != reserva.id)
             {
@@ -99,6 +112,7 @@ namespace AgenciaFinal.Controllers
                 {
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
+                    TempData["reservaeditado"] = "Reserva modificada con exito";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -142,6 +156,7 @@ namespace AgenciaFinal.Controllers
             var reserva = await _context.Reserva.FindAsync(id);
             _context.Reserva.Remove(reserva);
             await _context.SaveChangesAsync();
+            TempData["reservaeliminada"] = "Reserva eliminada con exito";
             return RedirectToAction(nameof(Index));
         }
 

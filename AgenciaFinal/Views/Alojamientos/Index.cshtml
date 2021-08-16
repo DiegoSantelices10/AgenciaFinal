@@ -8,6 +8,34 @@
 
 <h1>Panel Alojamientos</h1>
 
+@if (TempData["alojeditado"] != null)
+{
+    <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
+        @TempData["alojeditado"]
+        <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+@if (TempData["alojeliminado"] != null)
+{
+    <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
+        @TempData["alojeliminado"]
+        <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+@if (TempData["alojcreado"] != null)
+{
+    <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
+        @TempData["alojcreado"]
+        <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <p>
     <a asp-action="Create">Crear un Alojamiento</a>
 </p>

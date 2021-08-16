@@ -1,8 +1,5 @@
-﻿var el = $(this);
-if ($('#aparece').attr("checked")) {
-    $('#passNuevo').show();
-} else {
-    $('#passNuevo').hide();
-}
-     
+﻿$('#cambiar').click(function () {
+    $('#pass').show();
+    $('#pass1').show();
+    $('#pass2').show();
 });

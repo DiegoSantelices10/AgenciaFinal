@@ -7,36 +7,46 @@
 }
 <h1 class="text-center">Todos lo Alojamientos Disponibles</h1>
 
+@if (TempData["guardado"] != null)
+{
+    <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
+        @TempData["guardado"]
+        <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <p class="text-center">
     <a asp-action="BusquedaDeAlojamiento">BUSCAR ALOJAMIENTOS</a>
 </p>
-@foreach (var item in Model)
-{
-    <div class="container">
+ <div class="container">
         <div class="row pt-5 m-auto">
-            <div class="col-md-6 col-lg-4 pb-3">
+            @foreach (var item in Model)
+            {
 
 
-                <div class="card card-custom bg-white border-white border-0">
+<div class="col-md-6 col-lg-4 pb-3">
+
+
+                <div class="card card-custom bg-white">
                     <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
                     <div class="card-custom-avatar">
                         <img class="img-fluid" src="~/img/@Html.DisplayFor(modelItem => item.imagen)" alt="Avatar" />
                     </div>
                     <div class="card-body" style="overflow-y: auto">
                         <h4 class="card-title">@Html.DisplayFor(modelItem => item.barrio)</h4>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.ciudad) <a href="https://getbootstrap.com/docs/4.0/components/card/#card-decks" target="_blank">card-decks</a> to align multiple cards nicely in a row.</p>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.estrellas) <a href="https://getbootstrap.com/docs/4.0/components/card/#card-decks" target="_blank">card-decks</a> to align multiple cards nicely in a row.</p>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.ciudad) </p>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.estrellas)</p>
 
                     </div>
-                    <div class="card-footer" style="background: inherit; border-color: inherit;">
-                        <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
+                    <div class="card-footer">
+                        <a class="text-center" asp-action="DetailsAlojamiento" asp-route-id="@item.id">Detalles</a> 
                     </div>
                 </div>
                 <!-- Copy until here -->
 
-            </div>
+            </div>}
         </div>
 
-    </div>}
+  </div>

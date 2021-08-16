@@ -6,7 +6,15 @@
 }
 
 <h1>Details</h1>
-
+    @if (TempData["guardado"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
+            @TempData["guardado"]
+            <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+}
 <div>
     <h4>Usuario</h4>
     <hr />
