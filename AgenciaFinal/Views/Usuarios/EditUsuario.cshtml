@@ -22,17 +22,16 @@
                 <span asp-validation-for="nombre" class="text-danger"></span>
             </div>
             <input asp-for="password" type="hidden" class="form-control" />
-            <div class="form-group">
-                <label class="control-label">Contraseña Actual</label>
-                <input id="passViejo" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label class="control-label">Constraseña Nueva</label>
-                <input id="passNuevo1" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label class="control-label">Reingrese Contrasña Nueva</label>
-                <input id="passNuevo2" class="form-control" />
+
+            <div id="passNuevo" style="display:none">
+                <div class="form-group">
+                    <label class="control-label">Constraseña Nueva</label>
+                    <input name="passNuevo1" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Reingrese Contraseña Nueva</label>
+                    <input name="passNuevo2" class="form-control" />
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="correoElectronico" class="control-label"></label>
@@ -44,7 +43,13 @@
                 <input asp-for="DNI" class="form-control" />
                 <span asp-validation-for="DNI" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label class="control-label">Contraseña Actual</label>
+                <input name="passViejo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="aparece" value="" /> Cambiar Contrasenia?
+            </div>
             <div class="form-group">
                 <input type="submit" value="GUARDAR" class="btn btn-primary" />
             </div>

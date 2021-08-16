@@ -59,13 +59,12 @@ namespace AgenciaFinal.Controllers
         public async Task<IActionResult> MisDatos()
         {
 
-
             var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
 
             return View(usuario);
         }
 
-        public async Task<IActionResult> EditUsuario()
+        public async Task<IActionResult> EditUsuario(int? id)
         {
 
             var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
@@ -78,7 +77,7 @@ namespace AgenciaFinal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditUsuario(Usuario usuario)
+        public async Task<IActionResult> EditUsuario(int id, Usuario usuario)
         {
             var passViejo = Request.Form["passViejo"];
             var passNuevo1 = Request.Form["passNuevo1"];
@@ -93,10 +92,14 @@ namespace AgenciaFinal.Controllers
                         if(passNuevo1.ToString() == passNuevo2.ToString())
                         {
                             usuario.password = passNuevo1;
+
+                            Global.nombre = usuario.nombre;
+                            Global.password = usuario.password;
+
                             _context.Update(usuario);
                             await _context.SaveChangesAsync();
-            
-                            return RedirectToAction("IndexUsuario", "Usuarios");
+
+                            return RedirectToAction("MisDatos", "Usuarios");
                         }
                     } 
                 }
@@ -112,7 +115,7 @@ namespace AgenciaFinal.Controllers
                     }
                    
                 }
-               return RedirectToAction("EditUsuario", "Usuarios", 123123);
+                return View(usuario);
             } else
             {
                 return View(usuario);
@@ -205,7 +208,7 @@ namespace AgenciaFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Password,CorreoElectronico,DNI,IntentosDeLogueos,Bloqueado,EsAdmin")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, Usuario usuario)
         {
             if (id != usuario.id)
             {

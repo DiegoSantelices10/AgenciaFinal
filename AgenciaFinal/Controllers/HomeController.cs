@@ -59,11 +59,11 @@ namespace AgenciaFinal.Controllers
 
             var user = _context.Usuario.Where(u => u.nombre == usuario.nombre & u.password == usuario.password).FirstOrDefault();
 
-            Global.nombre = user.nombre;
-            Global.password = user.password;
-
             if (user != null)
-            { 
+            {
+                Global.nombre = user.nombre;
+                Global.password = user.password;
+
                 if (!user.esAdmin)
                 {
                   return RedirectToAction("IndexUsuario", "Usuarios");
