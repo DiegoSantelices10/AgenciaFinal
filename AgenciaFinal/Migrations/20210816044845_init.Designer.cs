@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgenciaFinal.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210815093529_init")]
+    [Migration("20210816044845_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,9 @@ namespace AgenciaFinal.Migrations
 
                     b.Property<int?>("hotelid")
                         .HasColumnType("int");
+
+                    b.Property<string>("imagen")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("tv")
                         .HasColumnType("bit");
@@ -139,9 +142,6 @@ namespace AgenciaFinal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("contador")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("fDesde")
                         .HasColumnType("datetime2");
 
@@ -153,12 +153,6 @@ namespace AgenciaFinal.Migrations
 
                     b.Property<int?>("id_usuarioid")
                         .HasColumnType("int");
-
-                    b.Property<float>("pDesde")
-                        .HasColumnType("real");
-
-                    b.Property<float>("pHasta")
-                        .HasColumnType("real");
 
                     b.Property<float>("precio")
                         .HasColumnType("real");

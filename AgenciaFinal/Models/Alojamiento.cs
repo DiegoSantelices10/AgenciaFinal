@@ -33,7 +33,7 @@ namespace AgenciaFinal.Models
 
         public int cantidadDePersonas { get; set; }
 
-
+        public string imagen { get; set; }
         public Hotel hotel { get; set; }
         public Cabania cabania { get; set; }
     }

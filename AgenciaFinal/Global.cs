@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AgenciaFinal.Models
+namespace AgenciaFinal
 {
     public class Global
     {

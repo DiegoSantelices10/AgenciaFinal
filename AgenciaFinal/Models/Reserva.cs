@@ -13,7 +13,6 @@ namespace AgenciaFinal.Models
         
         public int id { get; set; }
 
-        public int contador { get; set; } = 0;
         [Display(Name = "Fecha Desde")]
         public DateTime fDesde { get; set; }
         [Display(Name = "Fecha Hasta")]
@@ -22,8 +21,6 @@ namespace AgenciaFinal.Models
         public Usuario id_usuario { get; set; }
         [Display(Name = "Precio Total")]
         public float precio { get; set; }
-        public float pDesde { get; set; }
-        public float pHasta { get; set; }
 
     }
 }

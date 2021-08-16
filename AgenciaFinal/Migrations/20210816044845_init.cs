@@ -83,6 +83,7 @@ namespace AgenciaFinal.Migrations
                     ciudad = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     esHotel = table.Column<bool>(type: "bit", nullable: false),
                     cantidadDePersonas = table.Column<int>(type: "int", nullable: false),
+                    imagen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     hotelid = table.Column<int>(type: "int", nullable: true),
                     cabaniaid = table.Column<int>(type: "int", nullable: true)
                 },
@@ -129,14 +130,11 @@ namespace AgenciaFinal.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    contador = table.Column<int>(type: "int", nullable: false),
                     fDesde = table.Column<DateTime>(type: "datetime2", nullable: false),
                     fHasta = table.Column<DateTime>(type: "datetime2", nullable: false),
                     id_alojamientoid = table.Column<int>(type: "int", nullable: true),
                     id_usuarioid = table.Column<int>(type: "int", nullable: true),
-                    precio = table.Column<float>(type: "real", nullable: false),
-                    pDesde = table.Column<float>(type: "real", nullable: false),
-                    pHasta = table.Column<float>(type: "real", nullable: false)
+                    precio = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
