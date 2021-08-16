@@ -89,7 +89,7 @@ namespace AgenciaFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,barrio,estrellas,cantidadDePersonas,tv,ciudad,cantidad_de_habitaciones,precio_por_dia,precio_por_persona,cantidadDeBanios,esHotel")] Alojamiento alojamiento)
+        public async Task<IActionResult> Create(Alojamiento alojamiento)
         {
             if (ModelState.IsValid)
             {
