@@ -13,7 +13,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="EditUsuario">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
@@ -21,10 +21,18 @@
                 <input asp-for="nombre" class="form-control" />
                 <span asp-validation-for="nombre" class="text-danger"></span>
             </div>
+            <input asp-for="password" type="hidden" class="form-control" />
             <div class="form-group">
-                <label asp-for="password" class="control-label"></label>
-                <input asp-for="password" class="form-control" />
-                <span asp-validation-for="password" class="text-danger"></span>
+                <label class="control-label">Contraseña Actual</label>
+                <input id="passViejo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Constraseña Nueva</label>
+                <input id="passNuevo1" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Reingrese Contrasña Nueva</label>
+                <input id="passNuevo2" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="correoElectronico" class="control-label"></label>
@@ -36,16 +44,7 @@
                 <input asp-for="DNI" class="form-control" />
                 <span asp-validation-for="DNI" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="bloqueado" /> @Html.DisplayNameFor(model => model.bloqueado)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="esAdmin" /> @Html.DisplayNameFor(model => model.esAdmin)
-                </label>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="GUARDAR" class="btn btn-primary" />
             </div>

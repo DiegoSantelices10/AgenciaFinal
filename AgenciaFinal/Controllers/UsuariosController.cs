@@ -76,7 +76,48 @@ namespace AgenciaFinal.Controllers
             return View(usuario);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUsuario(Usuario usuario)
+        {
+            var passViejo = Request.Form["passViejo"];
+            var passNuevo1 = Request.Form["passNuevo1"];
+            var passNuevo2 = Request.Form["passNuevo2"];
 
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (usuario.password == passViejo.ToString())
+                    {
+                        if(passNuevo1.ToString() == passNuevo2.ToString())
+                        {
+                            usuario.password = passNuevo1;
+                            _context.Update(usuario);
+                            await _context.SaveChangesAsync();
+            
+                            return RedirectToAction("IndexUsuario", "Usuarios");
+                        }
+                    } 
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsuarioExists(usuario.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                   
+                }
+               return RedirectToAction("EditUsuario", "Usuarios", 123123);
+            } else
+            {
+                return View(usuario);
+            }
+        }
         public async Task<IActionResult> MisReservas()
         {
             var reservas = _context.Reserva.Where(u => u.id_usuario.nombre == Global.nombre & u.id_usuario.password == Global.password);
