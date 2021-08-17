@@ -29,7 +29,7 @@ namespace AgenciaFinal.Controllers
         public IEnumerable<Alojamiento> aloja { get; set; }
 
 
-    public async Task<IActionResult> IndexUsuario()
+    public async Task<IActionResult> BusquedaDeAlojamiento()
         {
             aloja = await _context.Alojamiento
             .Include(c => c.hotel)
@@ -37,7 +37,6 @@ namespace AgenciaFinal.Controllers
                 .AsNoTracking()
                 .ToListAsync();
             return View(aloja);
-
         }
 
         public async Task<IActionResult> DetailsAlojamiento(int? id)
@@ -48,7 +47,10 @@ namespace AgenciaFinal.Controllers
             }
 
             var alojamiento = await _context.Alojamiento
+                 .Include(c => c.hotel)
+                 .Include(c => c.cabania)
                 .FirstOrDefaultAsync(m => m.id == id);
+
             if (alojamiento == null)
             {
                 return NotFound();
@@ -56,21 +58,61 @@ namespace AgenciaFinal.Controllers
             return View(alojamiento);
         }
 
-        public async Task<IActionResult> BusquedaDeAlojamiento()
+        public async Task<IActionResult> IndexUsuario()
         {
             return View();
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento alojamiento)
+        public async Task<IActionResult> BusquedaDeAlojamiento()
         {
-           /* var aloja = _context.Reserva.Include(c => c.id_alojamiento)
-                  .Where(u => u.id_alojamiento.ciudad == Global..id_alojamiento.ciudad).FirstOrDefault();*/
-            if (aloja != null)
+            var ciudad = Request.Form["ciudad"];
+            var esHotel = Request.Form["esHotel"];
+            DateTime fDesde = DateTime.Parse(Request.Form["fDesde"]);
+            DateTime fHasta = DateTime.Parse(Request.Form["fHasta"]);
+            var cantPersonas = int.Parse(Request.Form["cantPersonas"]);
+
+            
+            var todosAlojamientos = await _context.Alojamiento
+            .Include(c => c.hotel)
+            .Include(c => c.cabania)
+                .AsNoTracking()
+                .ToListAsync();
+
+            var reservados = await _context.Reserva.ToListAsync();
+
+
+            foreach (var alojamiento in todosAlojamientos)
             {
-                return View("Index", aloja);
+                    foreach (var reservado in reservados)
+                    {
+                        if (DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fHasta) <= DateTime.Parse(alojamiento.ElementAt(2)))
+                    {
+                        //X ------------------- ENTRE FECHAS
+                        alojamientosReservados.Remove(alojamiento);
+                    }
+                    if (DateTime.Parse(fHasta) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fHasta) <= DateTime.Parse(alojamiento.ElementAt(2)))
+                    {
+                        //X -------------------COMIENZO y ENTRE FECHAS
+                        alojamientosReservados.Remove(alojamiento);
+                    }
+                    if (DateTime.Parse(fDesde) <= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fHasta) <= DateTime.Parse(alojamiento.ElementAt(2)) && DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)))
+                    {
+                        //COMIENTO ANTERIOS y ENTRE FECHAS y FIN DESPUES
+                        alojamientosReservados.Remove(alojamiento);
+                    }
+                    if (DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fDesde) <= DateTime.Parse(alojamiento.ElementAt(2)))
+                    {
+                        //ENTRE FECHAS y FIN
+                        alojamientosReservados.Remove(alojamiento);
+                    }
             }
+
+        }
+
+
+
 
             return RedirectToAction("ResultadoBusqueda", "Usuarios");
         }
@@ -161,6 +203,19 @@ namespace AgenciaFinal.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reservar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmarReservar()
+        {
+            return View();
+        }
 
         //****************************************************************METODOS COTROLADOR ADMINISTRADOR
 

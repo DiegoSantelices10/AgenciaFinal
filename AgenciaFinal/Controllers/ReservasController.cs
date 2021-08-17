@@ -58,7 +58,56 @@ namespace AgenciaFinal.Controllers
         // GET: Reservas/Create
         public IActionResult Create()
         {
+            ViewBag.itemsUsuarios = GetFkUsuarios(_context.Usuario);
+            ViewBag.itemsAlojamiento = GetFkAlojamiento(_context.Alojamiento);
+
             return View();
+        }
+
+        private List<SelectListItem> GetFkUsuarios(DbSet<Usuario> user)
+        {
+
+            var Usuario = (from u in user
+                           select new Usuario
+                           {
+                               id = u.id,
+                               nombre = u.nombre
+                           }).ToList();
+
+            List<SelectListItem> itemsUser = Usuario.ConvertAll(us =>
+            {
+                return new SelectListItem()
+                {
+                    Text = us.nombre.ToString(),
+                    Value = us.id.ToString(),
+                    Selected = false
+                };
+            });
+
+            return itemsUser;
+        }
+
+        private List<SelectListItem> GetFkAlojamiento(DbSet<Alojamiento> aloj)
+        {
+
+            var alojamiento = (from u in aloj
+                               select new Alojamiento
+                               {
+                                   id = u.id,
+                                   barrio = u.barrio
+                               }).ToList();
+
+            List<SelectListItem> itemsAloj = alojamiento.ConvertAll(us =>
+            {
+                return new SelectListItem()
+                {
+                    Text = us.barrio.ToString(),
+                    Value = us.id.ToString(),
+                    Selected = false
+                };
+            });
+
+            return itemsAloj;
         }
 
         // POST: Reservas/Create

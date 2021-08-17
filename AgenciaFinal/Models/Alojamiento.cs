@@ -28,7 +28,7 @@ namespace AgenciaFinal.Models
         public string ciudad { get; set; }
 
 
-        [Display(Name = "Es Hotel")] 
+        [Display(Name = "Es Hotel")]
         public bool esHotel { get; set; }
 
         public int cantidadDePersonas { get; set; }
