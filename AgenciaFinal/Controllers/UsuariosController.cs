@@ -270,10 +270,14 @@ namespace AgenciaFinal.Controllers
             }
         }
 
+        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Reservar()
+        public async Task<IActionResult> Reservar(Alojamiento alojamiento)
         {
+
+
             return View();
         }
 
