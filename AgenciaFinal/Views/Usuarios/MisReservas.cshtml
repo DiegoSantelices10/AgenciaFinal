@@ -16,10 +16,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.id_usuario.nombre)
+                @Html.DisplayNameFor(model => model.id_alojamiento.id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.id_alojamiento.id)
+                @Html.DisplayNameFor(model => model.id_alojamiento.barrio)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.id_alojamiento.ciudad)
@@ -42,10 +42,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.id_usuario.nombre)
+                        @Html.DisplayFor(modelItem => item.id_alojamiento.id)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.id_alojamiento.id)
+                        @Html.DisplayFor(modelItem => item.id_alojamiento.barrio)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.id_alojamiento.ciudad)

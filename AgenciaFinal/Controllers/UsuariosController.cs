@@ -14,6 +14,8 @@ namespace AgenciaFinal.Controllers
     {
         private readonly AppDbContext _context;
 
+        //PARA LA BUSQUEDA DE ALOJAMIENTOS
+
         public UsuariosController(AppDbContext context)
         {
             _context = context;
@@ -29,7 +31,7 @@ namespace AgenciaFinal.Controllers
         public IEnumerable<Alojamiento> aloja { get; set; }
 
 
-    public async Task<IActionResult> BusquedaDeAlojamiento()
+        public async Task<IActionResult> BusquedaDeAlojamiento()
         {
             aloja = await _context.Alojamiento
             .Include(c => c.hotel)
@@ -63,64 +65,123 @@ namespace AgenciaFinal.Controllers
             return View();
         }
 
-        /*
+
+
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento()
+        public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento sobrecargaFalsa)
         {
-            var ciudad = Request.Form["ciudad"];
+            string ciudad = Request.Form["ciudad"];
             var esHotel = Request.Form["esHotel"];
             DateTime fDesde = DateTime.Parse(Request.Form["fDesde"]);
             DateTime fHasta = DateTime.Parse(Request.Form["fHasta"]);
             var cantPersonas = int.Parse(Request.Form["cantPersonas"]);
 
-            
-            var todosAlojamientos = await _context.Alojamiento
-            .Include(c => c.hotel)
-            .Include(c => c.cabania)
+
+            List<AgenciaFinal.Models.Reserva> reservasList = new List<AgenciaFinal.Models.Reserva>();
+
+            List<AgenciaFinal.Models.Alojamiento> alojamientosList = new List<AgenciaFinal.Models.Alojamiento>();
+
+            List<AgenciaFinal.Models.Alojamiento> alojamientosFiltrados = new List<AgenciaFinal.Models.Alojamiento>();
+
+            List<AgenciaFinal.Models.Reserva> reservasFiltradas = new List<AgenciaFinal.Models.Reserva>();
+
+            List<AgenciaFinal.Models.Alojamiento> resultadoDeBusqueda = new List<AgenciaFinal.Models.Alojamiento>();
+
+
+            IEnumerable<AgenciaFinal.Models.Alojamiento> alojamientos = await _context.Alojamiento
+                .Include(c => c.hotel)
+                .Include(c => c.cabania)
+                    .AsNoTracking()
+                    .ToListAsync();
+
+            IEnumerable<AgenciaFinal.Models.Reserva> reservas = await _context.Reserva
+            .Include(c => c.id_alojamiento)
+            .Include(c => c.id_usuario)
                 .AsNoTracking()
                 .ToListAsync();
 
-            var reservados = await _context.Reserva.ToListAsync();
 
 
-            foreach (var alojamiento in todosAlojamientos)
+            foreach (AgenciaFinal.Models.Alojamiento alojamiento in alojamientos)
             {
-                    foreach (var reservado in reservados)
-                    {
-                        if (DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fHasta) <= DateTime.Parse(alojamiento.ElementAt(2)))
-                    {
-                        //X ------------------- ENTRE FECHAS
-                        alojamientosReservados.Remove(alojamiento);
-                    }
-                    if (DateTime.Parse(fHasta) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fHasta) <= DateTime.Parse(alojamiento.ElementAt(2)))
-                    {
-                        //X -------------------COMIENZO y ENTRE FECHAS
-                        alojamientosReservados.Remove(alojamiento);
-                    }
-                    if (DateTime.Parse(fDesde) <= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fHasta) <= DateTime.Parse(alojamiento.ElementAt(2)) && DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)))
-                    {
-                        //COMIENTO ANTERIOS y ENTRE FECHAS y FIN DESPUES
-                        alojamientosReservados.Remove(alojamiento);
-                    }
-                    if (DateTime.Parse(fDesde) >= DateTime.Parse(alojamiento.ElementAt(1)) && DateTime.Parse(fDesde) <= DateTime.Parse(alojamiento.ElementAt(2)))
-                    {
-                        //ENTRE FECHAS y FIN
-                        alojamientosReservados.Remove(alojamiento);
-                    }
+                alojamientosList.Add(alojamiento);
+                alojamientosFiltrados.Add(alojamiento);
             }
 
-        }
+            foreach (AgenciaFinal.Models.Reserva reserva in reservas)
+            {
+                reservasList.Add(reserva);
+                reservasFiltradas.Add(reserva);
+            }
 
 
-   
+
+            foreach (var alojamiento in alojamientosList)
+            {
+                foreach (var reservado in reservasList)
+                {
+                    if (alojamiento.id == reservado.id_alojamiento.id)
+                    {
+                        reservasFiltradas.Add(reservado);
+                        alojamientosFiltrados.Remove(alojamiento);
+                    }
+                }
+            }
+
+            if (reservasFiltradas != null)
+            {
+
+                foreach (var reservado in reservasList)
+                {
+                    if (fDesde >= reservado.fDesde && fHasta <= reservado.fHasta)
+                    {
+                        //X ------------------- ENTRE FECHAS
+                        reservasFiltradas.Remove(reservado);
+                    }
+                    if (fHasta >= reservado.fDesde && fHasta <= reservado.fHasta)
+                    {
+                        //X -------------------COMIENZO y ENTRE FECHAS
+                        reservasFiltradas.Remove(reservado);
+                    }
+                    if (fDesde <= reservado.fDesde && fDesde >= reservado.fDesde && fHasta <= reservado.fHasta && fDesde >= reservado.fDesde)
+                    {
+                        //COMIENTO ANTERIOS y ENTRE FECHAS y FIN DESPUES
+                        reservasFiltradas.Remove(reservado);
+                    }
+                    if (fDesde >= reservado.fDesde && fDesde <= reservado.fHasta)
+                    {
+                        //ENTRE FECHAS y FIN
+                        reservasFiltradas.Remove(reservado);
+                    }
+                }
+
+            }
+
+            foreach (AgenciaFinal.Models.Alojamiento alojamiento in alojamientosFiltrados)
+            {
+         
+                if(string.Equals(ciudad, alojamiento.ciudad, StringComparison.OrdinalIgnoreCase)){
+                    resultadoDeBusqueda.Add(alojamiento);
+                }
+
+            }
+
+
+            foreach (AgenciaFinal.Models.Reserva reservado in reservasFiltradas)
+            {
+                resultadoDeBusqueda.Add(reservado.id_alojamiento);
+            }
+
+            Global.alojamientosFiltrados = resultadoDeBusqueda;
 
             return RedirectToAction("ResultadoBusqueda", "Usuarios");
         }
-             */
+
+
         public async Task<IActionResult> ResultadoBusqueda()
         {
 
-            return View();
+            return View(Global.alojamientosFiltrados);
         }
         public async Task<IActionResult> MisDatos()
         {
@@ -155,7 +216,7 @@ namespace AgenciaFinal.Controllers
                 {
                     if (usuario.password == passViejo.ToString())
                     {
-                        if(passNuevo1.ToString() == passNuevo2.ToString())
+                        if (passNuevo1.ToString() == passNuevo2.ToString())
                         {
                             usuario.password = passNuevo1;
 
@@ -170,7 +231,7 @@ namespace AgenciaFinal.Controllers
 
                             return RedirectToAction("MisDatos", "Usuarios");
                         }
-                    } 
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -182,22 +243,28 @@ namespace AgenciaFinal.Controllers
                     {
                         throw;
                     }
-                   
+
                 }
                 return View(usuario);
-            } else
+            }
+            else
             {
                 return View(usuario);
             }
         }
         public async Task<IActionResult> MisReservas()
         {
-            var reservas = _context.Reserva.Where(u => u.id_usuario.nombre == Global.nombre & u.id_usuario.password == Global.password);
+            var reservas = _context.Reserva
+            .Include(c => c.id_alojamiento)
+            .Include(c => c.id_alojamiento.hotel)
+            .Include(c => c.id_alojamiento.cabania)
+            .Include(c => c.id_usuario).Where(u => u.id_usuario.nombre == Global.nombre & u.id_usuario.password == Global.password);
 
             if (reservas != null)
             {
                 return View(reservas);
-            } else
+            }
+            else
             {
                 return View();
             }
@@ -222,7 +289,7 @@ namespace AgenciaFinal.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            if(TempData["guardado"] != null)
+            if (TempData["guardado"] != null)
             {
                 TempData["guardado"] = "Usuario Actualizado con exito";
             }

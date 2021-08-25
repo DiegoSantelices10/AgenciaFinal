@@ -10,6 +10,8 @@ namespace AgenciaFinal
     public class Global
     {
 
+
+
         //DATOS DE LOGIN
         public static string nombre { get; set; }
 
@@ -21,5 +23,9 @@ namespace AgenciaFinal
         public static DateTime fDesde { get; set; }
         public static DateTime fHasta { get; set; }
         public static int cantPersonas { get; set; }
+    
+        //RESULTADO DE BUSQUEDA
+        public static IEnumerable<AgenciaFinal.Models.Alojamiento> alojamientosFiltrados { get; set; }
+
     }
 }
