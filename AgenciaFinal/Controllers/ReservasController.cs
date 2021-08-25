@@ -20,6 +20,8 @@ namespace AgenciaFinal.Controllers
         }
 
         // GET: Reservas
+
+        public IEnumerable<Reserva> reservas { get; set; }
         public async Task<IActionResult> Index()
         {
             if (TempData["reservaeditado"] != null)
@@ -34,7 +36,14 @@ namespace AgenciaFinal.Controllers
             {
                 TempData["reservacreada"] = "Reserva Creada con exito";
             }
-            return View(await _context.Reserva.ToListAsync());
+
+            reservas = await _context.Reserva
+            .Include(c => c.id_alojamiento)
+            .Include(c => c.id_usuario)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return View(reservas);
         }
 
         // GET: Reservas/Details/5

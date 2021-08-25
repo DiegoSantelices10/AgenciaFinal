@@ -63,7 +63,7 @@ namespace AgenciaFinal.Controllers
             return View();
         }
 
-
+        /*
         [HttpPost]
         public async Task<IActionResult> BusquedaDeAlojamiento()
         {
@@ -112,11 +112,11 @@ namespace AgenciaFinal.Controllers
         }
 
 
-
+   
 
             return RedirectToAction("ResultadoBusqueda", "Usuarios");
         }
-
+             */
         public async Task<IActionResult> ResultadoBusqueda()
         {
 
