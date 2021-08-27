@@ -13,15 +13,19 @@ namespace AgenciaFinal.Models
 
         public int id { get; set; }
 
-        [Display(Name = "Fecha Desde")]
-        public DateTime fDesde { get; set; }
-        [Display(Name = "Fecha Hasta")]
-        public DateTime fHasta { get; set; }
+        [DataType(DataType.Date)]
+        [Display(Name = "DESDE")]
+        public DateTime? fDesde { get; set; }
+
+
+        [DataType(DataType.Date)]
+        [Display(Name = "HASTA")]
+        public DateTime? fHasta { get; set; }
         public int id_alojamientoid { get; set; }
         public Alojamiento id_alojamiento { get; set; }
         public int id_usuarioid { get; set; }
         public Usuario id_usuario { get; set; }
-        [Display(Name = "Precio Total")]
+        [Display(Name = "IMPORTE")]
         public float precio { get; set; }
 
     }

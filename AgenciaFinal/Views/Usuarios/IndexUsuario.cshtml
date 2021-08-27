@@ -1,46 +1,68 @@
-﻿@model IEnumerable<AgenciaFinal.Models.Alojamiento>
+﻿@model AgenciaFinal.Models.Reserva
 @{
     ViewData["Title"] = "BusquedaDeAlojamiento";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h1>BusquedaDeAlojamiento</h1>
-
-
-
-<div>
-    <form style="font-size:small" method="post" asp-action="BusquedaDeAlojamiento" asp-controller="Usuarios">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-        <div class="row">
-            <div class="form-group col-3">
-                <label class="control-label "> Ciudad </label>
-                <input name="ciudad" class="form-control" />
-            </div>
-            <div class="form-group col-3">
-                <select name="esHotel" id="foo" class="form-select" aria-label="Default select example">
-                    <option value="hotel">Hotel</option>
-                    <option value="cabania">Cabania</option>
-                </select>
-            </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Realizar una Reserva</h4>
+            <p class="card-category">Complete Los Datos</p>
         </div>
-        <div class="row">
-            <div class="form-group col-3">
-                <label class="control-label ">Fecha Desde</label>
-                <input name="fDesde" class="form-control" />
-            </div>
-            <div class="form-group col-3">
-                <label class="control-label ">Fecha Hasta</label>
-                <input name="fHasta" class="form-control" />
-            </div>
-            <div class="form-group col-3">
-                <label class="control-label ">Cantidad de Personas</label>
-                <input name="cantPersonas" class="form-control" />
-            </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id" />
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-static" asp-for="id_alojamiento.ciudad"></label>
+                            <input class="form-control" asp-for="id_alojamiento.ciudad">
+                            <span asp-validation-for="id_alojamiento.ciudad" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="fDesde" class="bmd-label-static"></label>
+                            <input asp-for="fDesde" class="form-control">
+                            <span asp-validation-for="fDesde" class="text-danger"></span>
+                        </div>
+                    </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="fHasta" class="bmd-label-static"></label>
+                        <input asp-for="fHasta" class="form-control">
+                        <span asp-validation-for="fHasta" class="text-danger"></span>
+                    </div>
+                </div>
+                </div>
+        
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                            <label class="bmd-label-static">ELIJA TIPO DE ALOJAMIENTO</label>
+                            <select class="form-control mt-2" style="height:0px;" >
+                                <option value="Hotel"></option>
+                                <option value="Cabania"></option>
+                                
+                            </select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group mt-3">
+                            <label asp-for="id_alojamiento.cantidadDePersonas" class="bmd-label-static"></label>
+                            <input asp-for="id_alojamiento.cantidadDePersonas" class="form-control" />
+                            <span asp-validation-for="id_alojamiento.cantidadDePersonas" class="text-danger"></span>
+                        </div>
+                    </div>
+                 
+                </div>
+             
+                <a asp-action="IndexUsuario" class="btn btn-warning">VOLVER</a>
+                <input type="submit" value="Buscar" class="btn btn-primary pull-right" />
+                <div class="clearfix"></div>
+            </form>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Buscar alojamiento" class="btn btn-primary" />
-        </div>
-    </form>
-    <a asp-action="IndexUsuario" class="btn btn-warning">VOLVER</a>
+    </div>
 </div>
+
+

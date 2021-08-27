@@ -6,72 +6,83 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
+<div class="content">
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title mt-0">Mis Reservas Activas</h4>
+                    <p class="card-category">Administre sus reservas</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead >
+                                <tr>
+                                    <th class="font-weight-bold" style="font-size:14px; text-align:center;">
+                                        @Html.DisplayNameFor(model => model.id_alojamiento.id)
+                                    </th>
+                                    <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                        @Html.DisplayNameFor(model => model.id_alojamiento.barrio)
+                                    </th>
+                                    <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                        @Html.DisplayNameFor(model => model.id_alojamiento.ciudad)
+                                    </th>
+                                    <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                        @Html.DisplayNameFor(model => model.fDesde)
+                                    </th>
+                                    <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                        @Html.DisplayNameFor(model => model.fHasta)
+                                    </th>
+                                    <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                        @Html.DisplayNameFor(model => model.precio)
+                                    </th>
+                                    <th class="font-weight-bold" style="font-size: 14px; text-align: center;">ACCIONES</th>
+                                </tr>
+                            </thead>
+                            @if (Model != null)
+                            {
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td style="text-align:center;">
+                                                @Html.DisplayFor(modelItem => item.id_alojamiento.id)
+                                            </td>
+                                            <td style="text-align:center;">
+                                                @Html.DisplayFor(modelItem => item.id_alojamiento.barrio)
+                                            </td>
+                                            <td style="text-align:center;">
+                                                @Html.DisplayFor(modelItem => item.id_alojamiento.ciudad)
+                                            </td>
+                                            <td style="text-align:center;">
+                                                @Html.DisplayFor(modelItem => item.fDesde)
+                                            </td>
+                                            <td style="text-align:center;">
+                                                @Html.DisplayFor(modelItem => item.fHasta)
+                                            </td>
+                                            <td style="text-align:center;">
+                                                @Html.DisplayFor(modelItem => item.precio)
+                                            </td>
+                                            <td style="text-align:center;">
+                                               
+                                                <a asp-action="Edit" asp-route-id="@item.id" class="material-icons">edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.id" class="material-icons">content_paste</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.id" class="material-icons">delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
 
-<h1>MisReservas</h1>
-@if (Model.Count() == 0)
-{ 
-    <h2 class="py-3 text-primary">No se registran Reservas</h2>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.id_alojamiento.id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.id_alojamiento.barrio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.id_alojamiento.ciudad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fDesde)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fHasta)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    @if (Model != null) {
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id_alojamiento.id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id_alojamiento.barrio)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id_alojamiento.ciudad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.precio)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fDesde)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fHasta)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    }
-    else
-    {
 
-    }
-
-    <table>
-        <a asp-action="IndexUsuario" class="btn btn-warning">VOLVER</a>

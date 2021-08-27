@@ -7,28 +7,65 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="@Url.Content("~/css/estilosPanel.css")">
-    
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="@Url.Content("~/css/css/material-dashboard.css?v=2.1.2")" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="@Url.Content("~/css/demo/demo.css")" rel="stylesheet" />
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-0 p-0">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuario</a>
-            </div>
-        </nav>
-    </header>
-    <div class="container-fluid">
-        <div class="d-flex row ">
-            <div class="col-3">
-                <div class="list-group list-group-flush">
-                    <a asp-controller="Usuarios" asp-action="MisDatos" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">Mis Datos </a>
-                    <a asp-controller="Usuarios" asp-action="MisReservas" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">Mis Reservas</a>
-                    <a asp-controller="Usuarios" asp-action="CerrarSesion" class="list-group-item list-group-item-action list-group-item-light p-3 bg-dark text-white">Cerrar Sesión </a>
+    <div class="wrapper ">
+        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+            <!--
+                Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-                </div>
+                Tip 2: you can also add an image using data-image tag
+            -->
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                    Creative Tim
+                </a>
             </div>
-            <div class="col-9">
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item  ">
+                        <a class="nav-link" asp-action="MisDatos" asp-controller="Usuarios">
+                            <i class="material-icons">dashboard</i>
+                            <p>Mi Perfil</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-action="MisReservas" asp-controller="Usuarios">
+                            <i class="material-icons">person</i>
+                            <p>Mis Reservas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-action="IndexUsuario" asp-controller="Usuarios">
+                            <i class="material-icons">content_paste</i>
+                            <p>Buscar Alojamiento</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-action="CerrarSesion" asp-controller="Usuarios">
+                            <i class="material-icons">logout</i>
+                            <p>Cerrar Sesion</p>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+           
+
+        
+            <div class="mt-5">
                 <main role="main">
                     @RenderBody()
                 </main>
@@ -36,10 +73,50 @@
         </div>
     </div>
 
+    <script src="~/js/js/core/jquery.min.js"></script>
+    <script src="~/js/js/core/popper.min.js"></script>
+    <script src="~/js/js/core/bootstrap-material-design.min.js"></script>
+    <script src="~/js/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Plugin for the momentJs  -->
+    <script src="~/js/js/plugins/moment.min.js"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="~/js/js/plugins/sweetalert2.js"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="~/js/js/plugins/jquery.validate.min.js"></script>
+    <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+    <script src="~/js/js/plugins/jquery.bootstrap-wizard.js"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="~/js/js/plugins/bootstrap-selectpicker.js"></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="~/js/js/plugins/bootstrap-datetimepicker.min.js"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    <script src="~/js/js/plugins/jquery.dataTables.min.js"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="~/js/js/plugins/bootstrap-tagsinput.js"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="~/js/js/plugins/jasny-bootstrap.min.js"></script>
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    <script src="~/js/js/plugins/fullcalendar.min.js"></script>
+    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+    <script src="~/js/js/plugins/jquery-jvectormap.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="~/js/js/plugins/nouislider.min.js"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <!-- Library for adding dinamically elements -->
+    <script src="~/js/js/plugins/arrive.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chartist JS -->
+    <script src="~/js/js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="~/js/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/js/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="~/demo/demo.js"></script>
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/pass.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

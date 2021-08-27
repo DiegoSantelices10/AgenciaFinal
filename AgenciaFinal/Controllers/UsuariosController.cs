@@ -24,7 +24,7 @@ namespace AgenciaFinal.Controllers
         public async Task<IActionResult> CerrarSesion()
         {
             //METODO SIN VISTA QUE ROMPE LA SESSION
-            return RedirectToAction("Login", "Home");
+             return RedirectToAction("Login", "Home");
         }
 
         //****************************************************************METODOS CONTROLADOR USUARIO DE USUARIO SOLO
