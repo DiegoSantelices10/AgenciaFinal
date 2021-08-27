@@ -68,8 +68,9 @@ namespace AgenciaFinal.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento sobrecargaFalsa)
+        public async Task<IActionResult> BusquedaDeAlojamiento(Reserva sobrecargaFalsa)
         {
+
             string ciudad = Request.Form["ciudad"];
             var esHotel = Request.Form["esHotel"];
             DateTime fDesde = DateTime.Parse(Request.Form["fDesde"]);
