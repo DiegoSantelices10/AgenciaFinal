@@ -1,0 +1,76 @@
+﻿@model AgenciaFinal.Models.Alojamiento
+
+@{ ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml"; }
+
+
+<h1>Detalles Alojamiento</h1>
+
+<div>
+    <h4>Alojamiento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.barrio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.barrio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.estrellas)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.estrellas)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.tv)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.tv)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ciudad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ciudad)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cabania.habitaciones)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cabania.habitaciones)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cabania.precioPorDia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cabania.precioPorDia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.hotel.precio_por_persona)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.hotel.precio_por_persona)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cabania.banios)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cabania.banios)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.esHotel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.esHotel)
+        </dd>
+    </dl>
+</div>
+
+
+
+<div>
+    <a asp-action="IndexUsuario" class="btn btn-warning">VOLVER</a>
+    <a asp-action="Reservar" class="btn btn-success">RESERVAR</a>
+</div>
