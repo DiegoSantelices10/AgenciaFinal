@@ -4264,8 +4264,14 @@ tbody.collapse.show {
 }
 
 .nav-link {
+    
   display: block;
   padding: 0.5rem 1rem;
+}
+
+.sombra {
+    font-size:20px;
+    
 }
 
 .nav-link:hover,

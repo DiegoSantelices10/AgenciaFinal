@@ -15,3 +15,15 @@ select {
     height:35px;
     margin-left:30px;
 }
+
+.sombra:hover {
+    background-color: rgb(156 39 176);
+  
+}
+
+.sombra>a>p:hover {
+    color:white;
+}
+
+
+

@@ -10,6 +10,8 @@ namespace AgenciaFinal.Models
     {
         public int id { get; set; }
 
+        
+
         [Display(Name = "Precio/Persona")]
         public double precio_por_persona { get; set; }
     }

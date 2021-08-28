@@ -11,8 +11,8 @@ namespace AgenciaFinal.Models
 
         [Key]
         [Display(Name = "ID")]
-
         public int id { get; set; }
+
 
         [Display(Name = "BARRIO")]
         public string barrio { get; set; }

@@ -21,7 +21,7 @@ namespace AgenciaFinal.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> CerrarSesion()
+        public IActionResult CerrarSesion()
         {
             //METODO SIN VISTA QUE ROMPE LA SESSION
              return RedirectToAction("Login", "Home");
@@ -68,8 +68,9 @@ namespace AgenciaFinal.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento(Alojamiento sobrecargaFalsa)
+        public async Task<IActionResult> BusquedaDeAlojamiento(Reserva sobrecargaFalsa)
         {
+
             string ciudad = Request.Form["ciudad"];
             var esHotel = Request.Form["esHotel"];
             DateTime fDesde = DateTime.Parse(Request.Form["fDesde"]);
@@ -304,6 +305,16 @@ namespace AgenciaFinal.Controllers
             return View(await _context.Usuario.ToListAsync());
         }
 
+
+
+        public IActionResult AdminEditUsuario()
+        {
+            
+            return View();
+        }
+
+
+
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -321,6 +332,7 @@ namespace AgenciaFinal.Controllers
 
             return View(usuario);
         }
+
 
         // GET: Usuarios/Create
         public IActionResult Create()

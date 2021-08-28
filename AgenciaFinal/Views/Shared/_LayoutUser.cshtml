@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,49 +11,47 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="@Url.Content("~/css/css/material-dashboard.css?v=2.1.2")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/css/material-dashboard.css")" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="@Url.Content("~/css/demo/demo.css")" rel="stylesheet" />
 
 </head>
 <body>
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
             <!--
                 Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
                 Tip 2: you can also add an image using data-image tag
             -->
-            <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                    Creative Tim
-                </a>
+            <div class="logo text-center">
+         
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item  ">
-                        <a class="nav-link" asp-action="MisDatos" asp-controller="Usuarios">
-                            <i class="material-icons">dashboard</i>
-                            <p>Mi Perfil</p>
+                    <li class="nav-item sombra">
+                        <a class="nav-link " asp-action="MisDatos" asp-controller="Usuarios">
+                            <i class="material-icons">person</i>
+                            <p >Mi Perfil</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item sombra">
                         <a class="nav-link" asp-action="MisReservas" asp-controller="Usuarios">
-                            <i class="material-icons">person</i>
+                            <i class="material-icons">dashboard</i>
                             <p>Mis Reservas</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item sombra">
                         <a class="nav-link" asp-action="IndexUsuario" asp-controller="Usuarios">
                             <i class="material-icons">content_paste</i>
                             <p>Buscar Alojamiento</p>
                         </a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item sombra" style="margin-top:280px;">
                         <a class="nav-link" asp-action="CerrarSesion" asp-controller="Usuarios">
                             <i class="material-icons">logout</i>
-                            <p>Cerrar Sesion</p>
+                            <p >Cerrar Sesion</p>
                         </a>
                     </li>
 
@@ -65,7 +64,7 @@
            
 
         
-            <div class="mt-5">
+            <div style="margin-top:50px;">
                 <main role="main">
                     @RenderBody()
                 </main>

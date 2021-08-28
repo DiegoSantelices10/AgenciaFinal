@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Panel Usuarios</h1>
 
 @if (TempData["guardado"] != null)
 {
@@ -37,46 +36,80 @@
 
 
 
-<p>
-    <a asp-action="Create">Crear un nuevo Usuario</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.nombre)</th>
-            <th>@Html.DisplayNameFor(model => model.password)</th>
-            <th>@Html.DisplayNameFor(model => model.correoElectronico)</th>
-            <th>@Html.DisplayNameFor(model => model.DNI)</th>
-            <th>@Html.DisplayNameFor(model => model.bloqueado)</th>
-            <th>@Html.DisplayNameFor(model => model.esAdmin)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.nombre)</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.correoElectronico)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DNI)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.bloqueado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.esAdmin)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Eliminar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Usuarios</h4>
+                        <p class="card-category">Administre los usuarios</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="font-weight-bold" style="font-size:14px; text-align:center;">
+                                            @Html.DisplayNameFor(model => model.nombre)
+                                        </th>
+                                        <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                            @Html.DisplayNameFor(model => model.correoElectronico)
+                                        </th>
+                                        <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                            @Html.DisplayNameFor(model => model.DNI)
+                                        </th>
+                                        
+                                        <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                            @Html.DisplayNameFor(model => model.bloqueado)
+                                        </th>
+                                        <th class="font-weight-bold" style="font-size: 14px; text-align: center;">
+                                            @Html.DisplayNameFor(model => model.esAdmin)
+                                        </th>
+                                        <th class="font-weight-bold" style="font-size: 14px; text-align: center;">ACCIONES</th>
+                                    </tr>
+                                </thead>
+                                @if (Model != null)
+                                {
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.nombre)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.correoElectronico)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.DNI)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.bloqueado)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.esAdmin)
+                                                </td>
+                                                <td style="text-align:center;">
+
+                                                    <a asp-action="AdminEditUsuario" asp-controller="Usuarios" asp-route-id="@item.id" class="material-icons">edit</a>
+                                                    |
+                                                    <a asp-action="Delete" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons">delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
