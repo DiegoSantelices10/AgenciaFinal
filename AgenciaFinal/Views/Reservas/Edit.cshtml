@@ -7,12 +7,13 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">Realizar una Reserva</h4>
-            <p class="card-category">Complete Los Datos</p>
+            <h4 class="card-title">Edite su Reserva</h4>
+            <p class="card-category">Complete los Datos</p>
         </div>
         <div class="card-body">
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id_usuario.id" />
                 <input type="hidden" asp-for="id" />
                 <div class="row">
                     <div class="col-md-4">
@@ -29,23 +30,23 @@
                             <span asp-validation-for="fDesde" class="text-danger"></span>
                         </div>
                     </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label asp-for="fHasta" class="bmd-label-static"></label>
-                        <input asp-for="fHasta" class="form-control">
-                        <span asp-validation-for="fHasta" class="text-danger"></span>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="fHasta" class="bmd-label-static"></label>
+                            <input asp-for="fHasta" class="form-control">
+                            <span asp-validation-for="fHasta" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-                </div>
-        
+
                 <div class="row mt-3">
                     <div class="col-md-4">
-                            <label class="bmd-label-static">ELIJA TIPO DE ALOJAMIENTO</label>
-                            <select class="form-control mt-2" style="height:0px;" >
-                                <option value="Hotel">Hotel</option>
-                                <option value="Cabania">Caba&ntilde;a</option>
-                                
-                            </select>
+                        <label class="bmd-label-static">ELIJA TIPO DE ALOJAMIENTO</label>
+                        <select class="form-control mt-2" style="height:0px;">
+                            <option value="Hotel">Hotel</option>
+                            <option value="Cabania">Caba&ntilde;a</option>
+
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group mt-3">
@@ -54,12 +55,12 @@
                             <span asp-validation-for="id_alojamiento.cantidadDePersonas" class="text-danger"></span>
                         </div>
                     </div>
-                 
+
                 </div>
                 <div>
                     <input type="submit" value="Buscar" class="btn btn-primary pull-right" />
                 </div>
-                    <div class="clearfix"></div>
+                <div class="clearfix"></div>
             </form>
         </div>
     </div>

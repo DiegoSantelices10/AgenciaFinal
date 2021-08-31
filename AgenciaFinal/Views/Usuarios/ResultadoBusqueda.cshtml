@@ -5,7 +5,7 @@
     ViewData["Title"] = "Alojamientos";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
-<h1 class="text-center">Todos lo Alojamientos Disponibles</h1>
+<h1 class="text-center">Alojamientos Disponibles</h1>
 
 @if (TempData["guardado"] != null)
 {
@@ -18,7 +18,7 @@
 }
 
 <p class="text-center">
-    <a asp-action="IndexUsuario">BUSCAR ALOJAMIENTOS</a>
+    <a asp-action="IndexUsuario" class="btn btn-warning">VOLVER A BUSQUEDA DE ALOJAMIENTOS</a>
 </p>
 <div class="container">
     <div class="row pt-5 m-auto">
@@ -32,13 +32,13 @@
                 <div class="col-md-6 col-lg-4 pb-3">
 
 
-                    <div class="card card-custom bg-white">
+                    <div class="card card-custom bg-light text-dark">
                         <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
                         <div class="card-custom-avatar">
                             <img class="img-fluid" src="~/img/@Html.DisplayFor(modelItem => item.imagen)" alt="Avatar" />
                         </div>
                         <div class="card-body" style="overflow-y: auto">
-                            <h4 class="card-title">@Html.DisplayFor(modelItem => item.barrio)</h4>
+                            <h4 class="card-title text-dark">@Html.DisplayFor(modelItem => item.barrio)</h4>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.ciudad) </p>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.estrellas)</p>
 

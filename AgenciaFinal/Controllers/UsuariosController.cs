@@ -71,11 +71,11 @@ namespace AgenciaFinal.Controllers
         public async Task<IActionResult> BusquedaDeAlojamiento(Reserva sobrecargaFalsa)
         {
 
-            string ciudad = Request.Form["ciudad"];
-            var esHotel = Request.Form["esHotel"];
-            DateTime fDesde = DateTime.Parse(Request.Form["fDesde"]);
-            DateTime fHasta = DateTime.Parse(Request.Form["fHasta"]);
-            var cantPersonas = int.Parse(Request.Form["cantPersonas"]);
+            string ciudad = sobrecargaFalsa.id_alojamiento.ciudad;
+            var esHotel = sobrecargaFalsa.id_alojamiento.esHotel;
+            DateTime? fDesde = sobrecargaFalsa.fDesde;
+            DateTime? fHasta = sobrecargaFalsa.fHasta;
+            var cantPersonas = sobrecargaFalsa.id_alojamiento.cantidadDePersonas;
 
 
             List<AgenciaFinal.Models.Reserva> reservasList = new List<AgenciaFinal.Models.Reserva>();
