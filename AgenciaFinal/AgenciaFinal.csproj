@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Usuarios\Index - Copia.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\img\fondoDePantalla.jpg" />
     <None Include="wwwroot\img\logoUsuario.png" />
   </ItemGroup>
@@ -34,5 +30,7 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

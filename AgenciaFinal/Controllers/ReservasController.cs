@@ -146,7 +146,7 @@ namespace AgenciaFinal.Controllers
 
             var reserva = await _context.Reserva.FindAsync(id);
             if (reserva == null)
-            {
+            {   
                 return NotFound();
             }
             return View(reserva);
@@ -221,6 +221,62 @@ namespace AgenciaFinal.Controllers
         private bool ReservaExists(int id)
         {
             return _context.Reserva.Any(e => e.id == id);
+        }
+
+
+        //PARA EL USUARIO
+        public async Task<IActionResult> EditUsuario(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var reserva = await _context.Reserva.FindAsync(id);
+            if (reserva == null)
+            {
+                return NotFound();
+            }
+            return View(reserva);
+        }
+
+        // POST: Reservas/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUsuario(int id, Reserva reserva)
+        {
+
+            if (id != reserva.id)
+            {
+                return NotFound();
+            }
+            var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
+
+            reserva.id_usuario = usuario;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(reserva);
+                    await _context.SaveChangesAsync();
+                    TempData["reservaeditado"] = "Reserva modificada con exito";
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ReservaExists(reserva.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(reserva);
         }
     }
 }

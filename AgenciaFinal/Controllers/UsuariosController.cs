@@ -33,6 +33,7 @@ namespace AgenciaFinal.Controllers
 
         public async Task<IActionResult> BusquedaDeAlojamiento()
         {
+            ViewBag.itemsCiudad = GetFkCiudad(_context.Ciudades);
             aloja = await _context.Alojamiento
             .Include(c => c.hotel)
             .Include(c => c.cabania)
@@ -62,6 +63,7 @@ namespace AgenciaFinal.Controllers
 
         public async Task<IActionResult> IndexUsuario()
         {
+            ViewBag.itemsCiudad = GetFkCiudad(_context.Ciudades);
             return View();
         }
 
@@ -178,7 +180,28 @@ namespace AgenciaFinal.Controllers
             return RedirectToAction("ResultadoBusqueda", "Usuarios");
         }
 
+        private List<SelectListItem> GetFkCiudad(DbSet<Ciudades> user)
+        {
 
+            var ciudades = (from u in user
+                            select new Ciudades
+                            {
+                                id = u.id,
+                                nombre = u.nombre
+                            }).ToList();
+
+            List<SelectListItem> itemsciudad = ciudades.ConvertAll(us =>
+            {
+                return new SelectListItem()
+                {
+                    Text = us.nombre.ToString(),
+                    Value = us.id.ToString(),
+                    Selected = false
+                };
+            });
+
+            return itemsciudad;
+        }
         public async Task<IActionResult> ResultadoBusqueda()
         {
 
@@ -208,8 +231,8 @@ namespace AgenciaFinal.Controllers
         public async Task<IActionResult> EditUsuario(int id, Usuario usuario)
         {
             var passViejo = Request.Form["passViejo"];
-            var passNuevo1 = Request.Form["passNuevo1"];
-            var passNuevo2 = Request.Form["passNuevo2"];
+            var passNuevo1 = Request.Form["passNueva"];
+            var passNuevo2 = Request.Form["passNueva1"];
 
             if (ModelState.IsValid)
             {
