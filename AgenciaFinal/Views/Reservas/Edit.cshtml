@@ -13,7 +13,7 @@
         <div class="card-body">
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input asp-for="id_usuario.id"  type="hidden" />
+                <input asp-for="id_usuario.id" type="hidden" />
                 <input type="hidden" asp-for="id" />
                 <div class="row">
                     <div class="col-md-4">
@@ -58,9 +58,11 @@
 
                 </div>
                 <div>
+                <a asp-action="Index" class="btn btn-warning">VOLVER</a>
                     <input type="submit" value="Buscar" class="btn btn-primary pull-right" />
                 </div>
                 <div class="clearfix"></div>
+
             </form>
         </div>
     </div>

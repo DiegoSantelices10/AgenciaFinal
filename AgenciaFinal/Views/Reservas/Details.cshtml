@@ -5,28 +5,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Reserva</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.fDesde)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.fDesde)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.fHasta)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.fHasta)
-        </dd>
+<div class="col-md-6 shadow p-3 mb-5 bg-white rounded " style="left:270px">
+    <div class="card pb-2">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Administrar Datos del Usuario</h4>
+            <p class="card-category">Detalles</p>
+        </div>
+        <div class="card-body">
 
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-success">EDITAR</a>
-    <a asp-action="Index" class="btn btn-warning">VOLVER</a>
+            <div>
+                <h4>Usuario</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.fDesde)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.fDesde)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.fHasta)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.fHasta)
+                    </dd>
+
+                </dl>
+            </div>
+
+
+
+            <div>
+
+                <a asp-action="AdminEditUsuario" asp-route-id="@Model.id" class="btn btn-primary">EDITAR</a>
+                <a asp-action="Index" class="btn btn-outline-primary">VOLVER</a>
+            </div>
+
+        </div>
+    </div>
 </div>

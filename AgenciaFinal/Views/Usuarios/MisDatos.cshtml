@@ -5,20 +5,20 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-    @if (TempData["guardado"] != null)
-    {
-        <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
-            @TempData["guardado"]
-            <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+@if (TempData["guardado"] != null)
+{
+    <div class="alert alert-warning alert-dismissible " style="font-size:13px" role="alert">
+        @TempData["guardado"]
+        <button type="button" class="close" style="position:fixed" data-dismiss="alert" arial-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 
 
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
 
             <div class="col-md-3 ml-5 mr-3 ">
                 <div class="card card-profile">
@@ -44,75 +44,81 @@
                 </div>
             </div>
 
-                        <div class="col-md-8">
-                            <div class="card pb-2">
-                                <div class="card-header card-header-primary">
-                                    <h4 class="card-title">Edite sus Datos de Usuario</h4>
-                                    <p class="card-category">Complete todos los campos por favor</p>
+            <div class="col-md-8">
+                <div class="card pb-2">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Edite sus Datos de Usuario</h4>
+                        <p class="card-category">Complete todos los campos por favor</p>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="id" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating" asp-for="nombre"></label>
+                                        <input class="form-control" asp-for="nombre">
+                                        <span asp-validation-for="nombre" class="text-danger"></span>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <form asp-action="Edit">
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <input type="hidden" asp-for="id" />
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating" asp-for="nombre"></label>
-                                                    <input class="form-control" asp-for="nombre">
-                                                    <span asp-validation-for="nombre" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label asp-for="correoElectronico" class="bmd-label-floating"></label>
-                                                    <input asp-for="correoElectronico" class="form-control">
-                                                    <span asp-validation-for="correoElectronico" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label asp-for="DNI" class="bmd-label-floating"></label>
-                                                    <input asp-for="DNI" class="form-control">
-                                                    <span asp-validation-for="DNI" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group" style="display:none" id="pass">
-                                                    <label asp-for="password" class="bmd-label-floating"></label>
-                                                    <input asp-for="password" class="form-control" />
-                                                    <span asp-validation-for="password" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group" style="display:none" id="pass1">
-                                                    <label class="bmd-label-floating">Constraseña Nueva</label>
-                                                    <input name="passNueva" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group" style="display:none" id="pass2">
-                                                    <label class="bmd-label-floating">Reingrese Contraseña Nueva</label>
-                                                    <input name="passNueva1" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mt-4">
-                                            <input id="cambiar" type="button" value="CAMBIAR CONTRASEÑA" class="btn btn-primary" />
-                                      
-                                            <input type="submit" value="Actualizar Datos" class="btn btn-primary pull-right" />
-                                        </div>
-                                    </form>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="correoElectronico" class="bmd-label-floating"></label>
+                                        <input asp-for="correoElectronico" class="form-control">
+                                        <span asp-validation-for="correoElectronico" class="text-danger"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="DNI" class="bmd-label-floating"></label>
+                                        <input asp-for="DNI" class="form-control">
+                                        <span asp-validation-for="DNI" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- MI SUPER SALTO DE LINEA -->
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="bmd-label-floating"></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" style="display:none" id="pass">
+                                        <label asp-for="password" class="bmd-label-floating"></label>
+                                        <input asp-for="password" class="form-control" />
+                                        <span asp-validation-for="password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" style="display:none" id="pass1">
+                                        <label class="bmd-label-floating">Constraseña Nueva</label>
+                                        <input name="passNueva" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" style="display:none" id="pass2">
+                                        <label class="bmd-label-floating">Reingrese Contraseña Nueva</label>
+                                        <input name="passNueva1" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
 
 
+                            <div class="mt-4">
+                                <input id="cambiar" type="button" value="CAMBIAR CONTRASEÑA" class="btn btn-primary" />
+
+                                <input type="submit" value="Actualizar Datos" class="btn btn-primary pull-right" />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
+
+        </div>
+    </div>
+</div>

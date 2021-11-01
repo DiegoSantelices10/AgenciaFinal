@@ -24,7 +24,7 @@ namespace AgenciaFinal.Controllers
         public IActionResult CerrarSesion()
         {
             //METODO SIN VISTA QUE ROMPE LA SESSION
-             return RedirectToAction("Login", "Home");
+            return RedirectToAction("Login", "Home");
         }
 
         //****************************************************************METODOS CONTROLADOR USUARIO DE USUARIO SOLO
@@ -162,8 +162,9 @@ namespace AgenciaFinal.Controllers
 
             foreach (AgenciaFinal.Models.Alojamiento alojamiento in alojamientosFiltrados)
             {
-         
-                if(string.Equals(ciudad, alojamiento.ciudad, StringComparison.OrdinalIgnoreCase)){
+
+                if (string.Equals(ciudad, alojamiento.ciudad, StringComparison.OrdinalIgnoreCase))
+                {
                     resultadoDeBusqueda.Add(alojamiento);
                 }
 
@@ -330,10 +331,21 @@ namespace AgenciaFinal.Controllers
 
 
 
-        public IActionResult AdminEditUsuario()
+        public async Task<IActionResult> AdminEditUsuario(int? id)
         {
-            
-            return View();
+
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var EditUsuario = await _context.Usuario.FindAsync(id);
+            if (EditUsuario == null)
+            {
+                return NotFound();
+            }
+            return View(EditUsuario);
         }
 
 
@@ -381,7 +393,7 @@ namespace AgenciaFinal.Controllers
         }
 
         // GET: Usuarios/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        /*public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -395,7 +407,8 @@ namespace AgenciaFinal.Controllers
             }
             return View(usuario);
         }
-
+        */
+        
 
 
         // POST: Usuarios/Edit/5
@@ -405,33 +418,32 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Usuario usuario)
         {
+
+            var passViejo = Request.Form["passViejo"];
+            var passNuevo1 = Request.Form["passNueva"];
+            var passNuevo2 = Request.Form["passNueva1"];
+
             if (id != usuario.id)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            if (usuario.password == passViejo.ToString())
             {
-                try
+                if (passNuevo1.ToString() == passNuevo2.ToString())
                 {
+                    usuario.password = passNuevo1;
+
+                    Global.nombre = usuario.nombre;
+                    Global.password = usuario.password;
+
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
+
                     TempData["guardado"] = "Usuario Actualizado";
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
-            return View(usuario);
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: Usuarios/Delete/5

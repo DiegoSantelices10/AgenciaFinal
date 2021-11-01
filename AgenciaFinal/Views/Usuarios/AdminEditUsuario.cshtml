@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating" asp-for="nombre"></label>
-                            <input class="form-control" asp-for="nombre">
+                            <input class="form-control" asp-for="nombre"> @Html.DisplayFor(model => model.nombre)
                             <span asp-validation-for="nombre" class="text-danger"></span>
                         </div>
                     </div>
@@ -29,84 +29,86 @@
                             <span asp-validation-for="DNI" class="text-danger"></span>
                         </div>
                     </div>
-                        <div class="col-md-6">
+                    <div class="col-md-6">
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label asp-for="correoElectronico" class="bmd-label-floating"></label>
+                            <input asp-for="correoElectronico" class="form-control">
+                            <span asp-validation-for="correoElectronico" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label asp-for="correoElectronico" class="bmd-label-floating"></label>
-                                <input asp-for="correoElectronico" class="form-control">
-                                <span asp-validation-for="correoElectronico" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    Administrador
-                                    <input asp-for="esAdmin" class="form-check-input">@Html.DisplayFor(model => model.esAdmin)
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    Bloqueado
-                                    <input asp-for="bloqueado" class="form-check-input"> @Html.DisplayFor(model => model.bloqueado)
-                                </label>
-                            </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                Administrador
+                                <input asp-for="esAdmin" class="form-check-input">@Html.DisplayFor(model => model.esAdmin)
+                            </label>
                         </div>
                     </div>
-
-
-                    <div class="row">
-
-
-                        <!-- ACA MANDE UNA AJA un <br /> RARO-->
-                        <div class="col-md-6">
-                        </div>
-                        <div class="col-md-12">
-                            <label class="bmd-label-floating"></label>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group" style="display:none" id="pass">
-                                <label asp-for="password" class="bmd-label-floating">Ingrese contraseña Actual</label>
-                                <input class="form-control" />
-                                <span asp-validation-for="password" class="text-danger"></span>
-                            </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                Bloqueado
+                                <input asp-for="bloqueado" class="form-check-input"> @Html.DisplayFor(model => model.bloqueado)
+                            </label>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group" style="display:none" id="pass1">
-                                <label class="bmd-label-floating">Constraseña Nueva</label>
-                                <input name="passNueva" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" style="display:none" id="pass2">
-                                <label class="bmd-label-floating">Reingrese Contraseña Nueva</label>
-                                <input name="passNueva1" class="form-control" />
-                            </div>
-                        </div>
+                <div class="row">
+
+
+                    <!-- ACA MANDE UNA AJA un <br /> RARO-->
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="bmd-label-floating"></label>
                     </div>
 
-
-                    <div class="mt-4">
-                        <input id="cambiar" type="button" value="CAMBIAR CONTRASEÑA" class="btn btn-primary" />
-
-                        <input type="submit" value="Actualizar Datos" class="btn btn-primary pull-right" />
+                    <div class="col-md-6">
+                        <div class="form-group" style="display:none" id="pass">
+                            <label asp-for="password" class="bmd-label-floating">Ingrese contraseña Actual</label>
+                            <input  name="passViejo" class="form-control" />
+                            <span asp-validation-for="password" class="text-danger"></span>
+                        </div>
                     </div>
-</form>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" style="display:none" id="pass1">
+                            <label class="bmd-label-floating">Constraseña Nueva</label>
+                            <input name="passNueva" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" style="display:none" id="pass2">
+                            <label class="bmd-label-floating">Reingrese Contraseña Nueva</label>
+                            <input name="passNueva1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mt-4">
+                    <input id="cambiar" type="button" value="CAMBIAR CONTRASEÑA" class="btn btn-primary" />
+
+                    <input type="submit" value="Actualizar Datos" class="btn btn-primary pull-right" />
+                </div>
+                <a asp-action="Index" class="btn btn-warning">VOLVER</a>
+            </form>
         </div>
     </div>
 </div>
 
 
-
-
+   @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
