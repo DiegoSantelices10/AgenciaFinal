@@ -5,7 +5,14 @@
 }
 
 <div class="col-md-12">
-    <div class="card pb-2">
+    
+    <div class="mb-5 ml-3">
+        <a asp-action="Index" class="btn btn-primary p-2">
+            <i class="fas fa-arrow-left fa-3x"></i>
+        </a>
+    </div>
+  
+        <div class="card pb-3">
         <div class="card-header card-header-primary">
             <h4 class="card-title">Administrar Datos del Usuario</h4>
             <p class="card-category">Complete su perfil</p>
@@ -74,7 +81,7 @@
                     <div class="col-md-6">
                         <div class="form-group" style="display:none" id="pass">
                             <label asp-for="password" class="bmd-label-floating">Ingrese contraseña Actual</label>
-                            <input  name="passViejo" class="form-control" />
+                            <input name="passViejo" class="form-control" />
                             <span asp-validation-for="password" class="text-danger"></span>
                         </div>
                     </div>
@@ -102,7 +109,7 @@
 
                     <input type="submit" value="Actualizar Datos" class="btn btn-primary pull-right" />
                 </div>
-                <a asp-action="Index" class="btn btn-warning">VOLVER</a>
+
             </form>
         </div>
     </div>
