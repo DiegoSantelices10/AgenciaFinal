@@ -12,6 +12,11 @@ a {
   color: #0366d6;
 }
 
+
+.sombra:hover {
+    color:aqua;
+}
+
 .btnEdit {
     color: #ab47bc;
 }

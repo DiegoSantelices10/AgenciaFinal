@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Usuario</title>
+    <link href="~/fontawesome/css/all.css" rel="stylesheet">
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="@Url.Content("~/css/estilosPanel.css")">
+    <link href="@Url.Content("~/css/estilosPanel.css")" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
@@ -18,21 +20,16 @@
 </head>
 <body>
     <div class="wrapper ">
-        <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-            <!--
-                Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-                Tip 2: you can also add an image using data-image tag
-            -->
+        <div class="sidebar"   >
             <div class="logo text-center">
-         
-            </div>
+                <img src="/img/logodonpepe.png" alt="Alternate Text" />
+           </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item sombra">
-                        <a class="nav-link " asp-action="MisDatos" asp-controller="Usuarios">
+                        <a class="nav-link" asp-action="MisDatos" asp-controller="Usuarios">
                             <i class="material-icons">person</i>
-                            <p >Mi Perfil</p>
+                            <p class="s">Mi Perfil</p>
                         </a>
                     </li>
                     <li class="nav-item sombra">
@@ -48,10 +45,10 @@
                         </a>
                     </li>
 
-                    <li class="nav-item sombra" style="margin-top:280px;">
+                    <li class="nav-item sombra" style="margin-top:210px;">
                         <a class="nav-link" asp-action="CerrarSesion" asp-controller="Usuarios">
                             <i class="material-icons">logout</i>
-                            <p >Cerrar Sesion</p>
+                            <p>Cerrar Sesion</p>
                         </a>
                     </li>
 
@@ -61,9 +58,9 @@
         </div>
         <div class="main-panel">
             <!-- Navbar -->
-           
 
-        
+
+
             <div style="margin-top:50px;">
                 <main role="main">
                     @RenderBody()
@@ -71,7 +68,7 @@
             </div>
         </div>
     </div>
-
+    <script defer src="fontawesome/js/all.js"></script>
     <script src="~/js/js/core/jquery.min.js"></script>
     <script src="~/js/js/core/popper.min.js"></script>
     <script src="~/js/js/core/bootstrap-material-design.min.js"></script>
