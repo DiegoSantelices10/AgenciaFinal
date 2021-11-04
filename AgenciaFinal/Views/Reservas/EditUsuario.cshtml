@@ -5,15 +5,20 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 <div class="col-md-12">
+    <div class="mb-5 ml-3">
+        <a asp-action="IndexUsuario" asp-controller="Usuarios" class="btn btn-rose p-2 ">
+            <i class="fas fa-arrow-left fa-3x"></i>
+        </a>
+    </div>
     <div class="card">
-        <div class="card-header card-header-primary">
+        <div class="card-header card-header-rose">
             <h4 class="card-title">Edite su Reserva</h4>
             <p class="card-category">Complete los Datos</p>
         </div>
         <div class="card-body">
             <form asp-action="EditUsuario">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input asp-for="id_usuario.id"  type="hidden" />
+                <input asp-for="id_usuario.id" type="hidden" />
                 <input type="hidden" asp-for="id" />
                 <div class="row">
                     <div class="col-md-4">
@@ -58,7 +63,7 @@
 
                 </div>
                 <div>
-                    <input type="submit" value="Buscar" class="btn btn-primary pull-right" />
+                    <input type="submit" value="Buscar" class="btn btn-rose pull-right" />
                 </div>
                 <div class="clearfix"></div>
             </form>

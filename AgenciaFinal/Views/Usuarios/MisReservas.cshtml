@@ -13,7 +13,7 @@
 
             <div class="col-md-12">
                 <div class="card card-plain">
-                    <div class="card-header card-header-primary">
+                    <div class="card-header card-header-rose">
                         <h4 class="card-title">Mis Reservas Activas</h4>
                         <p class="card-category">Administre sus reservas</p>
                     </div>
@@ -69,9 +69,9 @@
                                                 </td>
                                                 <td style="text-align:center;">
 
-                                                    <a asp-action="EditUsuario" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons">edit</a>  
+                                                    <a asp-action="EditUsuario" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons" style="color: #e91e63">edit</a>  
                                                   |
-                                                    <a asp-action="Delete" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons">delete</a>
+                                                    <a asp-action="Delete" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons" style="color: #e91e63">delete</a>
                                                 </td>
                                             </tr>
                                         }

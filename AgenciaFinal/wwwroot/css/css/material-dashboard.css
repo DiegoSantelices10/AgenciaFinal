@@ -4269,14 +4269,12 @@ tbody.collapse.show {
   padding: 0.5rem 1rem;
 }
 
-.sombra {
-    font-size:20px;
-    
-}
 
 .nav-link:hover,
 .nav-link:focus {
   text-decoration: none;
+
+ 
 }
 
 .nav-link.disabled {
@@ -15505,6 +15503,9 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   opacity: 1;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(60, 72, 88, 0.4);
 }
+.nav-item:hover {
+    color: #e91e63;
+}
 
 .sidebar[data-color="white"] .nav .nav-item.active>a:not([data-toggle="collapse"]) i {
   color: rgba(60, 72, 88, 0.8);
@@ -15518,10 +15519,10 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.sidebar[data-background-color="red"] .nav .nav-item.active [data-toggle="collapse"],
-.sidebar[data-background-color="red"] .nav .nav-item:hover [data-toggle="collapse"] {
-  color: #fff;
-}
+    .sidebar[data-background-color="red"] .nav .nav-item.active [data-toggle="collapse"],
+    .sidebar[data-background-color="red"] .nav .nav-item:hover [data-toggle="collapse"] {
+        color: #e91e63;
+    }
 
 .sidebar[data-background-color="red"] .nav .nav-item.active [data-toggle="collapse"] i,
 .sidebar[data-background-color="red"] .nav .nav-item:hover [data-toggle="collapse"] i {
