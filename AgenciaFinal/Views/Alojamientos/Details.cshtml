@@ -19,59 +19,59 @@
         </div>
         <div class="card-body">
             <dl class="row">
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.barrio)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.barrio)
                 </dd>
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.estrellas)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.estrellas)
                 </dd>
 
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.tv)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.tv)
                 </dd>
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.ciudad)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.ciudad)
                 </dd>
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.cabania.habitaciones)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.cabania.habitaciones)
                 </dd>
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.cabania.precioPorDia)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.cabania.precioPorDia)
                 </dd>
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.hotel.precio_por_persona)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.hotel.precio_por_persona)
                 </dd>
-                <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.cabania.banios)
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.hotel.precio_por_persona)
                 </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.cabania.banios)
+                <dd class="col-sm-3">
+                    @Html.DisplayFor(model => model.hotel.precio_por_persona)
                 </dd>
-                <dt class="col-sm-6">
+                <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.esHotel)
                 </dt>
-                <dd class="col-sm-6">
+                <dd class="col-sm-3">
                     @Html.DisplayFor(model => model.esHotel)
                 </dd>
             </dl>
@@ -81,7 +81,7 @@
 
         <div class="ml-3 mt-0">
 
-            <a asp-action="AdminEditUsuario" asp-route-id="@Model.id" class="btn btn-primary">EDITAR</a>
+            <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-primary">EDITAR</a>
             
         </div>
 

@@ -417,7 +417,8 @@ namespace AgenciaFinal.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Usuario usuario)
-        {
+           
+    {
 
             var passViejo = Request.Form["passViejo"];
             var passNuevo1 = Request.Form["passNueva"];
