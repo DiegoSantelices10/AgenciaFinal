@@ -25,6 +25,7 @@ namespace AgenciaFinal.Models
         public Alojamiento id_alojamiento { get; set; }
         public int id_usuarioid { get; set; }
         public Usuario id_usuario { get; set; }
+
         [Display(Name = "IMPORTE")]
         public float precio { get; set; }
 
