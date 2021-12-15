@@ -17,18 +17,14 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="id_usuarioid" class="control-label"></label>
-                @*<input asp-for="id_usuario.nombre" class="form-control" />*@
-                @Html.DropDownListFor(model => model.id_usuarioid, usuarioID, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
-
-                <span asp-validation-for="id_usuarioid" class="text-danger"></span>
+                <label asp-for="id_usuario.nombre" class="control-label"></label>
+                <input asp-for="id_usuario.nombre" class="form-control" />
+                <span asp-validation-for="id_usuario.nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="id_alojamiento" class="control-label"></label>
-                @*<input asp-for="id_alojamiento.id" class="form-control" />*@
-                @Html.DropDownListFor(model => model.id_alojamientoid, alojamientoID, "Seleccione un tipo..", new { id = "normalDropwn2", @class = "form-control" })
-
-                <span asp-validation-for="id_alojamientoid" class="text-danger"></span>
+                <label asp-for="id_alojamiento.cantidadDePersonas" class="control-label"></label>
+                <input asp-for="id_alojamiento.cantidadDePersonas" class="form-control" />
+                <span asp-validation-for="id_alojamiento.cantidadDePersonas" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="precio" class="control-label"></label>

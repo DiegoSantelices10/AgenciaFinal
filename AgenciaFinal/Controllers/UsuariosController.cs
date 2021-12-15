@@ -231,6 +231,8 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditUsuario(int id, Usuario usuario)
         {
+
+            var us = usuario;
             var passViejo = Request.Form["passViejo"];
             var passNuevo1 = Request.Form["passNueva"];
             var passNuevo2 = Request.Form["passNueva1"];
@@ -417,9 +419,8 @@ namespace AgenciaFinal.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Usuario usuario)
-           
     {
-
+            var us = usuario;
             var passViejo = Request.Form["passViejo"];
             var passNuevo1 = Request.Form["passNueva"];
             var passNuevo2 = Request.Form["passNueva1"];
@@ -428,8 +429,7 @@ namespace AgenciaFinal.Controllers
             {
                 return NotFound();
             }
-            if (usuario.password == passViejo.ToString())
-            {
+            
                 if (passNuevo1.ToString() == passNuevo2.ToString())
                 {
                     usuario.password = passNuevo1;
@@ -437,14 +437,12 @@ namespace AgenciaFinal.Controllers
                     Global.nombre = usuario.nombre;
                     Global.password = usuario.password;
 
-                    _context.Update(usuario);
+                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
 
                     TempData["guardado"] = "Usuario Actualizado";
                 }
-            }
             return RedirectToAction(nameof(Index));
-
         }
 
         // GET: Usuarios/Delete/5

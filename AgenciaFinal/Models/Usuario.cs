@@ -21,7 +21,6 @@ namespace AgenciaFinal.Models
         [Required(ErrorMessage = "La contraseña es obligatoria")]
         [StringLength(50, ErrorMessage = "el {0} debe ser al menos {2} y máximo {1} caracteres", MinimumLength = 2)]
         [Display(Name = "CONTRASEÑA")]
-        [DataType(DataType.Password)]
         public string password { get; set; }
 
 
