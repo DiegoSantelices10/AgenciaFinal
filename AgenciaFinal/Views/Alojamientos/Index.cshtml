@@ -85,46 +85,46 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                        <tr>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.barrio)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.ciudad)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.estrellas)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.tv)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.hotel.precio_por_persona)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.cabania.habitaciones)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.cabania.precioPorDia)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.cabania.banios)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                @Html.DisplayFor(modelItem => item.esHotel)
-                                            </td>
-                                            <td style="text-align:center;">
-                                                <a asp-action="Edit" asp-controller="Alojamientos" asp-route-id="@item.id" class="material-icons">edit</a>
-                                                <a asp-action="Details" asp-controller="Alojamientos" asp-route-id="@item.id" class="material-icons">description</a>
-                                                <a asp-action="Delete" asp-controller="Alojamientos" asp-route-id="@item.id" class="material-icons">delete</a>
-                                            </td>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.barrio)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.ciudad)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.estrellas)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.tv)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.hotel.precio_por_persona)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.cabania.habitaciones)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.cabania.precioPorDia)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.cabania.banios)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.esHotel)
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    <a asp-action="Edit" asp-controller="Alojamientos" asp-route-id="@item.id" class="material-icons">edit</a>
+                                                    <a asp-action="Details" asp-controller="Alojamientos" asp-route-id="@item.id" class="material-icons">description</a>
+                                                    <a asp-action="Delete" asp-controller="Alojamientos" asp-route-id="@item.id" class="material-icons">delete</a>
+                                                </td>
 
-                                        </tr>
+                                            </tr>
                                         }
                                     </tbody>
                                 }
                             </table>
-                             <a asp-action="Create" class="btn btn-primary">CREAR ALOJAMIENTO</a>
+
                         </div>
                     </div>
                 </div>

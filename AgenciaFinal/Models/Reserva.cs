@@ -10,20 +10,18 @@ namespace AgenciaFinal.Models
     {
         [Key]
         [Display(Name = "ID")]
-
         public int id { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "DESDE")]
         public DateTime? fDesde { get; set; }
 
-
         [DataType(DataType.Date)]
         [Display(Name = "HASTA")]
         public DateTime? fHasta { get; set; }
-        public int id_alojamientoid { get; set; }
+
         public Alojamiento id_alojamiento { get; set; }
-        public int id_usuarioid { get; set; }
+        
         public Usuario id_usuario { get; set; }
 
         [Display(Name = "IMPORTE")]
