@@ -16,6 +16,9 @@ namespace AgenciaFinal.Models
         [Display(Name = "BARRIO")]
         public string barrio { get; set; }
 
+        [Display(Name = "CIUDAD")]
+        public string ciudad { get; set; }
+
         [Display(Name = "Estrellas")]
         public string estrellas { get; set; }
 
@@ -23,8 +26,6 @@ namespace AgenciaFinal.Models
         [Display(Name = "TV")]
         public bool tv { get; set; }
 
-        [Display(Name = "CIUDAD")]
-        public string ciudad { get; set; }
 
 
         [Display(Name = "Es Hotel")]

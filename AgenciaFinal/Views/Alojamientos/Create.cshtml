@@ -14,7 +14,7 @@
     </div>
     <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">Edite su Reserva</h4>
+            <h4 class="card-title">Nuevo Alojamiento</h4>
             <p class="card-category">Complete los Datos</p>
         </div>
         <div class="card-body">
@@ -22,6 +22,7 @@
                 <div class="col-md-4">
                     <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="id" />
                         <div class="form-group">
                             <label asp-for="barrio" class="control-label"></label>
                             <input asp-for="barrio" class="form-control" />
@@ -38,9 +39,19 @@
                             <span asp-validation-for="estrellas" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label asp-for="tv" class="control-label"></label>
+                            <input asp-for="tv" class="form-control" />
+                            <span asp-validation-for="tv" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label asp-for="cantidadDePersonas" class="control-label"></label>
                             <input asp-for="cantidadDePersonas" class="form-control" />
                             <span asp-validation-for="cantidadDePersonas" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="esHotel" class="control-label"></label>
+                            <input asp-for="esHotel" class="form-control" />
+                            <span asp-validation-for="esHotel" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
