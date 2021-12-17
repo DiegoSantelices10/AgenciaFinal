@@ -231,53 +231,29 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditUsuario(int id, Usuario usuario)
         {
-
             var us = usuario;
             var passViejo = Request.Form["passViejo"];
             var passNuevo1 = Request.Form["passNueva"];
             var passNuevo2 = Request.Form["passNueva1"];
 
-            if (ModelState.IsValid)
+            if (id != usuario.id)
             {
-                try
-                {
-                    if (usuario.password == passViejo.ToString())
-                    {
-                        if (passNuevo1.ToString() == passNuevo2.ToString())
-                        {
-                            usuario.password = passNuevo1;
-
-                            Global.nombre = usuario.nombre;
-                            Global.password = usuario.password;
-
-                            _context.Update(usuario);
-                            await _context.SaveChangesAsync();
-
-                            TempData["guardado"] = "Usuario Actualizado";
-
-
-                            return RedirectToAction("MisDatos", "Usuarios");
-                        }
-                    }
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-
-                }
-                return View(usuario);
+                return NotFound();
             }
-            else
+
+            if (passNuevo1.ToString() == passNuevo2.ToString())
             {
-                return View(usuario);
+                usuario.password = passNuevo1;
+
+                Global.nombre = usuario.nombre;
+                Global.password = usuario.password;
+
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();
+
+                TempData["guardado"] = "Usuario Actualizado";
             }
+            return RedirectToAction("MisDatos" , "Usuarios");
         }
         public async Task<IActionResult> MisReservas()
         {
