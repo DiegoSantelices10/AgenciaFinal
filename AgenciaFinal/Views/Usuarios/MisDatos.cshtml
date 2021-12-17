@@ -18,9 +18,14 @@
 
 <div class="content">
     <div class="container-fluid">
+        <div class="pb-2">
+            <a asp-action="IndexUsuario" class="btn btn-rose p-2 ">
+                <i class="fas fa-arrow-left fa-3x"></i>
+            </a>
+        </div>
         <div class="row">
 
-            <div class="col-md-3 ml-5 mr-3 ">
+            <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
                         <a href="javascript:;">
@@ -51,7 +56,7 @@
                         <p class="card-category">Complete todos los campos por favor</p>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Edit">
+                        <form asp-action="EditUsuario">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="id" />
                             <div class="row">

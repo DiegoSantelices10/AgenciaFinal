@@ -5,7 +5,7 @@
     ViewData["Title"] = "Alojamientos";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
-<h1 class="text-center">Alojamientos Disponibles</h1>
+
 
 @if (TempData["guardado"] != null)
 {
@@ -16,43 +16,53 @@
         </button>
     </div>
 }
-
-<p class="text-center">
-    <a asp-action="IndexUsuario" class="btn btn-warning">VOLVER A BUSQUEDA DE ALOJAMIENTOS</a>
-</p>
 <div class="container">
-    <div class="row pt-5 m-auto">
-        @if (Model != null)
-        {
+    <div class="mb-5 ml-3">
+        <a asp-action="IndexUsuario" class="btn btn-primary p-2 ">
+            <i class="fas fa-arrow-left fa-3x"></i>
+        </a>
+    </div>
 
-            @foreach (var item in Model)
-            {
+    <div class="col-md-12">
+        <div class="card card-plain">
+            <div class="card-header card-header-rose">
+                <h4 class="card-title">Alojamientos Disponibles</h4>
+                <p class="card-category">Resultado de busqueda</p>
+            </div>
 
+            <div>
+                <div class="row pt-2 m-auto">
+                    @if (Model != null)
+                    {
 
-                <div class="col-md-6 col-lg-4 pb-3">
+                        @foreach (var item in Model)
+                        {
 
+                            <div class="col-md-6 col-lg-4 pb-3">
+                                <div class="card card-custom bg-light text-dark">
+                                    <div class="card-custom-avatar">
+                                        <img class="img-fluid" src="~/img/hoteles1.jpeg" alt="Avatar" />
+                                    </div>
+                                    <div class="card-body" style="overflow-y: auto">
+                                        <h4 class="card-title text-dark" style="font-weight:600; font-size:22px">@Html.DisplayFor(modelItem => item.barrio)</h4>
+                                        <p class="card-text">@Html.DisplayFor(modelItem => item.ciudad) </p>
+                                        <p class="card-text">@Html.DisplayFor(modelItem => item.estrellas)</p>
 
-                    <div class="card card-custom bg-light text-dark">
-                        <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
-                        <div class="card-custom-avatar">
-                            <img class="img-fluid" src="~/img/@Html.DisplayFor(modelItem => item.imagen)" alt="Avatar" />
-                        </div>
-                        <div class="card-body" style="overflow-y: auto">
-                            <h4 class="card-title text-dark">@Html.DisplayFor(modelItem => item.barrio)</h4>
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.ciudad) </p>
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.estrellas)</p>
-
-                        </div>
-                        <div class="card-footer">
-                            <a class="text-center" asp-action="DetailsAlojamiento" asp-route-id="@item.id">Detalles</a>
-                        </div>
-                    </div>
-                    <!-- Copy until here -->
+                                    </div>
+                                    <div class="card-footer">
+                                        <a class="text-center" asp-action="DetailsAlojamiento" asp-route-id="@item.id">Detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
 
                 </div>
-            }
-        }
 
+            </div>
+
+
+        </div>
     </div>
 
 </div>

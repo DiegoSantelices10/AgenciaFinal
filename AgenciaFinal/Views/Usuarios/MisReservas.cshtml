@@ -9,6 +9,11 @@
 
 <div class="content">
     <div class="container-fluid">
+        <div>
+            <a asp-action="IndexUsuario" class="btn btn-rose p-2 ">
+                <i class="fas fa-arrow-left fa-3x"></i>
+            </a>
+        </div>
         <div class="row">
 
             <div class="col-md-12">
@@ -69,8 +74,8 @@
                                                 </td>
                                                 <td style="text-align:center;">
 
-                                                    <a asp-action="EditUsuario" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons" style="color: #e91e63">edit</a>  
-                                                  |
+                                                    <a asp-action="EditUsuario" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons" style="color: #e91e63">edit</a>
+                                                    |
                                                     <a asp-action="Delete" asp-controller="Reservas" asp-route-id="@item.id" class="material-icons" style="color: #e91e63">delete</a>
                                                 </td>
                                             </tr>

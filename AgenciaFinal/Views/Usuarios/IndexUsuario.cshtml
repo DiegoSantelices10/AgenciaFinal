@@ -21,8 +21,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-static" asp-for="id_alojamiento.ciudad"></label>
-                            @*<input class="form-control" asp-for="id_alojamiento.ciudad">*@
-                            @Html.DropDownListFor(model => model.id_alojamiento.ciudad, ciudadId, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
+                            <input class="form-control" asp-for="id_alojamiento.ciudad">
                             <span asp-validation-for="id_alojamiento.ciudad" class="text-danger"></span>
                         </div>
                     </div>
@@ -45,9 +44,9 @@
                 <div class="row mt-3 ">
                     <div class="col-md-4">
                             <label class="bmd-label-static">ELIJA TIPO DE ALOJAMIENTO</label>
-                            <select class="form-control mt-2 " style="height:0px; " >
-                                <option value="Hotel"></option>
-                                <option value="Cabania"></option>
+                            <select asp-for="id_alojamiento" class="form-control mt-2 " style="height:0px; " >
+                                <option value="hotel"></option>
+                                <option value="cabania"></option>
                                 
                             </select>
                     </div>
