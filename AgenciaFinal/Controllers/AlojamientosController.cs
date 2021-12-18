@@ -84,7 +84,8 @@ namespace AgenciaFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(alojamiento);
+                Alojamiento alojamiento1 = new Alojamiento("barrio", "ciudad", "5", true, true, 99, null, new Hotel(), null) ;
+                _context.Add(alojamiento1);
                 await _context.SaveChangesAsync();
                 TempData["alojcreado"] = "Alojamiento creado con exito";
                 return RedirectToAction(nameof(Index));

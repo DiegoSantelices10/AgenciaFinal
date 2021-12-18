@@ -22,7 +22,6 @@
                 <div class="col-md-4">
                     <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-for="id" />
                         <div class="form-group">
                             <label asp-for="barrio" class="control-label"></label>
                             <input asp-for="barrio" class="form-control" />
@@ -53,6 +52,10 @@
                             <input asp-for="esHotel" class="form-control" />
                             <span asp-validation-for="esHotel" class="text-danger"></span>
                         </div>
+                             <input asp-for="hotel" value="" class="form-control" type="hidden" />
+                             <input asp-for="cabania" value="" class="form-control" type="hidden" />
+                             <input asp-for="imagen" value="" class="form-control" type="hidden" />
+
 
                         <div class="form-group">
                             <input type="submit" value="Crear Alojamiento" class="btn btn-primary" />
