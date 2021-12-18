@@ -27,7 +27,7 @@ namespace AgenciaFinal
         {
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionSql")));
-
+            services.AddSession();
 
             services.AddControllersWithViews();
         }
@@ -51,7 +51,7 @@ namespace AgenciaFinal
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

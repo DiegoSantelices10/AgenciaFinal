@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgenciaFinal.DataAccess;
 using AgenciaFinal.Models;
+using AgenciaFinal.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
+
 
 namespace AgenciaFinal.Controllers
 {
@@ -14,6 +17,10 @@ namespace AgenciaFinal.Controllers
     {
         private readonly AppDbContext _context;
 
+
+        private static List<BuscadorDeAjolamientoResponse> _BuscadorDeAjolamiento { get; set; }
+
+       
         //PARA LA BUSQUEDA DE ALOJAMIENTOS
 
         public UsuariosController(AppDbContext context)
@@ -61,124 +68,55 @@ namespace AgenciaFinal.Controllers
             return View(alojamiento);
         }
 
-        public async Task<IActionResult> IndexUsuario()
+        [HttpGet]
+        public IActionResult IndexUsuario()
         {
+            List<SelectListItem> ajolamientoText = new List<SelectListItem>();
+         
+            ajolamientoText.Add(new SelectListItem("hotel", "hotel"));
+            ajolamientoText.Add(new SelectListItem("cabania", "cabania"));
             ViewBag.itemsCiudad = GetFkCiudad(_context.Ciudades);
+            ViewBag.itemsAlojamiento = ajolamientoText;
             return View();
         }
 
 
 
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento(Reserva sobrecargaFalsa)
+        public async Task<IActionResult> BusquedaDeAlojamiento(BuscadorDeAjolamientoRequest sobrecargaFalsa)
         {
 
-            string ciudad = sobrecargaFalsa.id_alojamiento.ciudad;
-            var esHotel = sobrecargaFalsa.id_alojamiento.esHotel;
-            DateTime? fDesde = sobrecargaFalsa.fDesde;
-            DateTime? fHasta = sobrecargaFalsa.fHasta;
-            var cantPersonas = sobrecargaFalsa.id_alojamiento.cantidadDePersonas;
+            string ciudad = sobrecargaFalsa.Ciudad;
+            string esHotel = sobrecargaFalsa.Alojamiento;
+            DateTime? fDesde = sobrecargaFalsa.FDesde;
+            DateTime? fHasta = sobrecargaFalsa.FHasta;
+            var cantPersonas = sobrecargaFalsa.CantidadPersonas;
 
 
-            List<AgenciaFinal.Models.Reserva> reservasList = new List<AgenciaFinal.Models.Reserva>();
+           var result = (from alo in _context.Alojamiento
+                                     join re in _context.Reserva on alo.id.ToString() equals re.id_alojamiento.id.ToString()
+                                     join ciu in _context.Ciudades on alo.ciudad equals ciu.id.ToString()
+                                     where
+                                     alo.cantidadDePersonas == cantPersonas &&
+                                     ciu.id.ToString() == ciudad &&
+                                     alo.esHotel == (string.Compare(esHotel, "hotel") == 0)
+                                     //&& (re.fDesde == fDesde && re.fHasta == fHasta)
 
-            List<AgenciaFinal.Models.Alojamiento> alojamientosList = new List<AgenciaFinal.Models.Alojamiento>();
+                                     select new BuscadorDeAjolamientoResponse
+                                     {
+                                         id = alo.id,
+                                         Ciudad = ciu.nombre,                                       
+                                         barrioAlojamiento = alo.barrio,
+                                         estrellas = alo.estrellas + " Estrellas"
 
-            List<AgenciaFinal.Models.Alojamiento> alojamientosFiltrados = new List<AgenciaFinal.Models.Alojamiento>();
+                                     }).ToList();
 
-            List<AgenciaFinal.Models.Reserva> reservasFiltradas = new List<AgenciaFinal.Models.Reserva>();
-
-            List<AgenciaFinal.Models.Alojamiento> resultadoDeBusqueda = new List<AgenciaFinal.Models.Alojamiento>();
-
-
-            IEnumerable<AgenciaFinal.Models.Alojamiento> alojamientos = await _context.Alojamiento
-                .Include(c => c.hotel)
-                .Include(c => c.cabania)
-                    .AsNoTracking()
-                    .ToListAsync();
-
-            IEnumerable<AgenciaFinal.Models.Reserva> reservas = await _context.Reserva
-            .Include(c => c.id_alojamiento)
-            .Include(c => c.id_usuario)
-                .AsNoTracking()
-                .ToListAsync();
-
-
-
-            foreach (AgenciaFinal.Models.Alojamiento alojamiento in alojamientos)
-            {
-                alojamientosList.Add(alojamiento);
-                alojamientosFiltrados.Add(alojamiento);
+        
+            if (result.Count() != 0)
+            {                
+                _BuscadorDeAjolamiento = result; 
             }
-
-            foreach (AgenciaFinal.Models.Reserva reserva in reservas)
-            {
-                reservasList.Add(reserva);
-                reservasFiltradas.Add(reserva);
-            }
-
-
-
-            foreach (var alojamiento in alojamientosList)
-            {
-                foreach (var reservado in reservasList)
-                {
-                    if (alojamiento.id == reservado.id_alojamiento.id)
-                    {
-                        reservasFiltradas.Add(reservado);
-                        alojamientosFiltrados.Remove(alojamiento);
-                    }
-                }
-            }
-
-            if (reservasFiltradas != null)
-            {
-
-                foreach (var reservado in reservasList)
-                {
-                    if (fDesde >= reservado.fDesde && fHasta <= reservado.fHasta)
-                    {
-                        //X ------------------- ENTRE FECHAS
-                        reservasFiltradas.Remove(reservado);
-                    }
-                    if (fHasta >= reservado.fDesde && fHasta <= reservado.fHasta)
-                    {
-                        //X -------------------COMIENZO y ENTRE FECHAS
-                        reservasFiltradas.Remove(reservado);
-                    }
-                    if (fDesde <= reservado.fDesde && fDesde >= reservado.fDesde && fHasta <= reservado.fHasta && fDesde >= reservado.fDesde)
-                    {
-                        //COMIENTO ANTERIOS y ENTRE FECHAS y FIN DESPUES
-                        reservasFiltradas.Remove(reservado);
-                    }
-                    if (fDesde >= reservado.fDesde && fDesde <= reservado.fHasta)
-                    {
-                        //ENTRE FECHAS y FIN
-                        reservasFiltradas.Remove(reservado);
-                    }
-                }
-
-            }
-
-            foreach (AgenciaFinal.Models.Alojamiento alojamiento in alojamientosFiltrados)
-            {
-
-                if (string.Equals(ciudad, alojamiento.ciudad, StringComparison.OrdinalIgnoreCase))
-                {
-                    resultadoDeBusqueda.Add(alojamiento);
-                }
-
-            }
-
-
-            foreach (AgenciaFinal.Models.Reserva reservado in reservasFiltradas)
-            {
-                resultadoDeBusqueda.Add(reservado.id_alojamiento);
-            }
-
-            Global.alojamientosFiltrados = resultadoDeBusqueda;
-
-            return RedirectToAction("ResultadoBusqueda", "Usuarios");
+            return RedirectToAction("ResultadoBusqueda", "Usuarios");          
         }
 
         private List<SelectListItem> GetFkCiudad(DbSet<Ciudades> user)
@@ -203,10 +141,16 @@ namespace AgenciaFinal.Controllers
 
             return itemsciudad;
         }
-        public async Task<IActionResult> ResultadoBusqueda()
+        public  IActionResult ResultadoBusqueda()
         {
-
-            return View(Global.alojamientosFiltrados);
+            List<BuscadorDeAjolamientoResponse> result = null;
+            if (_BuscadorDeAjolamiento != null)
+            {
+                result = _BuscadorDeAjolamiento;
+            }
+       
+           
+            return View(result);
         }
         public async Task<IActionResult> MisDatos()
         {

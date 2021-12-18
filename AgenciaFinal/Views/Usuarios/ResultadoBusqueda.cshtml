@@ -1,8 +1,8 @@
-﻿@model IEnumerable<AgenciaFinal.Models.Alojamiento>
+﻿@model IEnumerable<AgenciaFinal.Models.ViewModels.BuscadorDeAjolamientoResponse>
 
 
 @{
-    ViewData["Title"] = "Alojamientos";
+   // ViewData["Title"] = "Alojamientos";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
@@ -46,8 +46,8 @@
                                     
                                     <div style="display:flex">
                                         <div class="card-body" style="overflow-y: auto;">
-                                            <h4 class="card-title text-dark" style="font-weight:600; font-size:22px">@Html.DisplayFor(modelItem => item.barrio)</h4>
-                                            <p class="card-text">@Html.DisplayFor(modelItem => item.ciudad) </p>
+                                            <h4 class="card-title text-dark" style="font-weight:600; font-size:22px">@Html.DisplayFor(modelItem => item.barrioAlojamiento)</h4>
+                                            <p class="card-text">@Html.DisplayFor(modelItem => item.Ciudad) </p>
                                             <p class="card-text">@Html.DisplayFor(modelItem => item.estrellas) Estrellas</p>
 
                                         </div>

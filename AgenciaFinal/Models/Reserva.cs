@@ -21,7 +21,8 @@ namespace AgenciaFinal.Models
         public DateTime? fHasta { get; set; }
 
         public Alojamiento id_alojamiento { get; set; }
-        
+       
+
         public Usuario id_usuario { get; set; }
 
         [Display(Name = "IMPORTE")]
