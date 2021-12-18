@@ -23,7 +23,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-static" asp-for="id_alojamiento.ciudad"></label>
-                            <input class="form-control" asp-for="id_alojamiento.ciudad">
+                            <input class="form-control" asp-for="id_alojamiento.ciudad">@Html.DisplayFor(model => model.id_alojamiento.ciudad)
                             <span asp-validation-for="id_alojamiento.ciudad" class="text-danger"></span>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="col-md-4">
                         <div class="form-group mt-3">
                             <label asp-for="id_alojamiento.cantidadDePersonas" class="bmd-label-static"></label>
-                            <input asp-for="id_alojamiento.cantidadDePersonas" class="form-control" />
+                            <input asp-for="id_alojamiento.cantidadDePersonas" class="form-control" /> @Html.DisplayFor(model => model.id_alojamiento.cantidadDePersonas)
                             <span asp-validation-for="id_alojamiento.cantidadDePersonas" class="text-danger"></span>
                         </div>
                     </div>
