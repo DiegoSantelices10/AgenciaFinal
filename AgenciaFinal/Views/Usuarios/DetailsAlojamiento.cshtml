@@ -1,7 +1,9 @@
 ﻿@model AgenciaFinal.Models.Alojamiento
 
 @{ ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml"; }
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+}
 
 
 
@@ -81,8 +83,10 @@
                     </dd>
                 </dl>
             </div>
-            <div class="mt-4">
-                <a asp-action="Reservar" class="btn btn-rose">RESERVAR</a>
+            <form asp-action="Reservar" asp-controller="Reservas">
+                <input type="hidden" asp-for="id" />
+                <input type="submit" value="RESERVAR" class="btn btn-primary" />
+            </form>
             </div>
 
 

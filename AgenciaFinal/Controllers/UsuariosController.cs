@@ -426,10 +426,15 @@ namespace AgenciaFinal.Controllers
             var fechaDesde = Request.Form["fechaDesde"];
             var fechaHasta = Request.Form["fechaHasta"];
 
-            var esHotel = false;
-
             int cantPersonas = int.Parse(cantPersonasRequest.ToString());
+            
+            //ANTICIPO PARA RESERVAR
+            Global.fDesde = DateTime.Parse(fechaDesde.ToString());
+            Global.fHasta = DateTime.Parse(fechaHasta.ToString());
+            Global.cantPersonas = cantPersonas;
 
+
+            var esHotel = false;
 
             if (esHotelRequest.ToString() == "hotel")
             {
@@ -474,9 +479,7 @@ namespace AgenciaFinal.Controllers
             return RedirectToAction("ResultadoBusqueda", "Usuarios");
         }
 
-
-
-
+     
 
     }
 

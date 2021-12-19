@@ -82,6 +82,10 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Alojamiento alojamiento)
         {
+
+
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(alojamiento);
@@ -179,5 +183,17 @@ namespace AgenciaFinal.Controllers
         {
             return _context.Alojamiento.Any(e => e.id == id);
         }
+
+
+
+
+        
+
+
+
+
+
+
+
     }
 }
