@@ -10,12 +10,13 @@ namespace AgenciaFinal.Models
     {
 
         public int id { get; set; }
+        [Display(Name = "HABITACIONES")]
         public int habitaciones { get; set; }
 
-        [Display(Name = "Baños")]
+        [Display(Name = "BAÑOS")]
         public int banios { get; set; }
 
-        [Display(Name = "Precio/dia")]
+        [Display(Name = "PRECIO X DIA")]
         public double precioPorDia { get; set; }
 
     }

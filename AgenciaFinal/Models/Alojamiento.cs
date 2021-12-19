@@ -20,7 +20,7 @@ namespace AgenciaFinal.Models
         [Display(Name = "CIUDAD")]
         public string ciudad { get; set; }
 
-        [Display(Name = "Estrellas")]
+        [Display(Name = "ESTRELLAS")]
         public string estrellas { get; set; }
 
 
