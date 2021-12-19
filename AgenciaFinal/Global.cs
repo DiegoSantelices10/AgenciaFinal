@@ -26,6 +26,7 @@ namespace AgenciaFinal
     
         //RESULTADO DE BUSQUEDA
         public static IEnumerable<Alojamiento> alojamientosFiltrados { get; set; }
+        public static IEnumerable<Alojamiento> alojamientosFiltrados2 { get; set; }
         public static IEnumerable<Models.ViewModels.BuscadorDeAjolamientoRequest> BuscadorDeAjolamientoResponse { get; set; }
 
     }

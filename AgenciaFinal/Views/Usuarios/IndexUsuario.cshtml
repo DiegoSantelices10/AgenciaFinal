@@ -1,10 +1,7 @@
-﻿@model AgenciaFinal.Models.ViewModels.BuscadorDeAjolamientoRequest
-@{
+﻿@{
     ViewData["Title"] = "BusquedaDeAlojamiento";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 
-    List<SelectListItem> ciudadId = (List<SelectListItem>)ViewBag.itemsCiudad;
-    List<SelectListItem> alojamiento = (List<SelectListItem>)ViewBag.itemsAlojamiento;
 
 }
 
@@ -17,29 +14,26 @@
         <div class="card-body">
             <form asp-action="BusquedaDeAlojamiento" asp-controller="Usuarios">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="id" />
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            @*<label class="bmd-label-static" asp-for="id_alojamiento.ciudad"></label>
-        <input class="form-control" asp-for="id_alojamiento.ciudad">
-        <span asp-validation-for="id_alojamiento.ciudad" class="text-danger"></span>*@
-                            <label class="bmd-label-static" >Ciudad</label>
-                            @Html.DropDownListFor(model => model.Ciudad, ciudadId, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
+                           <label class="bmd-label-static" >Ciudad</label>
+                            <input class="form-control" name="ciudad">
+                            <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="FDesde" class="bmd-label-static"></label>
-                            <input asp-for="FDesde" class="form-control">
-                            <span asp-validation-for="FDesde" class="text-danger"></span>
+                            <label class="bmd-label-static">fecha Desde</label>
+                            <input  type="date" name="fechaDesde" class="form-control">
+                            <span class="text-danger"></span>
                         </div>
                     </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label asp-for="FHasta" class="bmd-label-static"></label>
-                        <input asp-for="FHasta" class="form-control">
-                        <span asp-validation-for="FHasta" class="text-danger"></span>
+                        <label class="bmd-label-static"> fecha Hasta</label>
+                        <input type="date" name="fechaHasta" class="form-control">
+                        <span class="text-danger"></span>
                     </div>
                 </div>
                 </div>
@@ -47,19 +41,16 @@
                 <div class="row mt-3 ">
                     <div class="col-md-4">
                         <label class="bmd-label-static">ELIJA TIPO DE ALOJAMIENTO</label>
-                        @*<select asp-for="AlojamientoId" class="form-control mt-2 " style="height:0px; " >
-            <option value="hotel">hotel</option>
-            <option value="cabania">cabania</option>
-
-        </select>*@
-
-                        @Html.DropDownListFor(model => model.Alojamiento, alojamiento, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
+                        <select name="esHotel" class="form-control mt-2 " style="height:0px; " >
+                            <option value="hotel">hotel</option>
+                            <option value="cabania">cabania</option>
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group mt-3">
-                            <label asp-for="CantidadPersonas" class="bmd-label-static"></label>
-                            <input asp-for="CantidadPersonas" class="form-control" />
-                            <span asp-validation-for="CantidadPersonas" class="text-danger"></span>
+                            <label class="bmd-label-static">cantidad de Personas</label>
+                            <input required type="number" name="cantidadPersonas" class="form-control" />
+                            <span class="text-danger"></span>
                         </div>
                     </div>
                  

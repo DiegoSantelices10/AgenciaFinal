@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgenciaFinal.Models.ViewModels.BuscadorDeAjolamientoResponse>
+﻿@model IEnumerable<AgenciaFinal.Models.Alojamiento>
 
 
 @{
@@ -32,10 +32,10 @@
 
             <div>
                 <div class="row pt-2 m-auto">
-                    @if (Model != null)
+                    @if (Global.alojamientosFiltrados != null)
                     {
 
-                        @foreach (var item in Model)
+                        @foreach (var item in Global.alojamientosFiltrados)
                         {
 
                             <div class="col-md-6 col-lg-4 pb-3">
@@ -46,8 +46,8 @@
                                     
                                     <div style="display:flex">
                                         <div class="card-body" style="overflow-y: auto;">
-                                            <h4 class="card-title text-dark" style="font-weight:600; font-size:22px">@Html.DisplayFor(modelItem => item.barrioAlojamiento)</h4>
-                                            <p class="card-text">@Html.DisplayFor(modelItem => item.Ciudad) </p>
+                                            <h4 class="card-title text-dark" style="font-weight:600; font-size:22px">@Html.DisplayFor(modelItem => item.barrio)</h4>
+                                            <p class="card-text">@Html.DisplayFor(modelItem => item.ciudad) </p>
                                             <p class="card-text">@Html.DisplayFor(modelItem => item.estrellas) Estrellas</p>
 
                                         </div>

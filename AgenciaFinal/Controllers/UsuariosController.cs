@@ -20,7 +20,7 @@ namespace AgenciaFinal.Controllers
 
         private static List<BuscadorDeAjolamientoResponse> _BuscadorDeAjolamiento { get; set; }
 
-       
+
         //PARA LA BUSQUEDA DE ALOJAMIENTOS
 
         public UsuariosController(AppDbContext context)
@@ -38,7 +38,7 @@ namespace AgenciaFinal.Controllers
         public IEnumerable<Alojamiento> aloja { get; set; }
 
 
-        public async Task<IActionResult> BusquedaDeAlojamiento()
+        public async Task<IActionResult> BusquedaDeAlojamientoGian()
         {
             ViewBag.itemsCiudad = GetFkCiudad(_context.Ciudades);
             aloja = await _context.Alojamiento
@@ -69,10 +69,10 @@ namespace AgenciaFinal.Controllers
         }
 
         [HttpGet]
-        public IActionResult IndexUsuario()
+        public IActionResult IndexUsuarioGian()
         {
             List<SelectListItem> ajolamientoText = new List<SelectListItem>();
-         
+
             ajolamientoText.Add(new SelectListItem("hotel", "hotel"));
             ajolamientoText.Add(new SelectListItem("cabania", "cabania"));
             ViewBag.itemsCiudad = GetFkCiudad(_context.Ciudades);
@@ -82,8 +82,11 @@ namespace AgenciaFinal.Controllers
 
 
 
+
+
+
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento(BuscadorDeAjolamientoRequest sobrecargaFalsa)
+        public async Task<IActionResult> BusquedaDeAlojamientoGian(BuscadorDeAjolamientoRequest sobrecargaFalsa)
         {
 
             string ciudad = sobrecargaFalsa.Ciudad;
@@ -93,30 +96,30 @@ namespace AgenciaFinal.Controllers
             var cantPersonas = sobrecargaFalsa.CantidadPersonas;
 
 
-           var result = (from alo in _context.Alojamiento
-                                     join re in _context.Reserva on alo.id.ToString() equals re.id_alojamiento.id.ToString()
-                                     join ciu in _context.Ciudades on alo.ciudad equals ciu.id.ToString()
-                                     where
-                                     alo.cantidadDePersonas == cantPersonas &&
-                                     ciu.id.ToString() == ciudad &&
-                                     alo.esHotel == (string.Compare(esHotel, "hotel") == 0)
-                                     //&& (re.fDesde == fDesde && re.fHasta == fHasta)
+            var result = (from alo in _context.Alojamiento
+                          join re in _context.Reserva on alo.id.ToString() equals re.id_alojamiento.id.ToString()
+                          join ciu in _context.Ciudades on alo.ciudad equals ciu.id.ToString()
+                          where
+                          alo.cantidadDePersonas == cantPersonas &&
+                          ciu.id.ToString() == ciudad &&
+                          alo.esHotel == (string.Compare(esHotel, "hotel") == 0)
+                          //&& (re.fDesde == fDesde && re.fHasta == fHasta)
 
-                                     select new BuscadorDeAjolamientoResponse
-                                     {
-                                         id = alo.id,
-                                         Ciudad = ciu.nombre,                                       
-                                         barrioAlojamiento = alo.barrio,
-                                         estrellas = alo.estrellas + " Estrellas"
+                          select new BuscadorDeAjolamientoResponse
+                          {
+                              id = alo.id,
+                              Ciudad = ciu.nombre,
+                              barrioAlojamiento = alo.barrio,
+                              estrellas = alo.estrellas + " Estrellas"
 
-                                     }).ToList();
+                          }).ToList();
 
-        
+
             if (result.Count() != 0)
-            {                
-                _BuscadorDeAjolamiento = result; 
+            {
+                _BuscadorDeAjolamiento = result;
             }
-            return RedirectToAction("ResultadoBusqueda", "Usuarios");          
+            return RedirectToAction("ResultadoBusqueda", "Usuarios");
         }
 
         private List<SelectListItem> GetFkCiudad(DbSet<Ciudades> user)
@@ -141,15 +144,15 @@ namespace AgenciaFinal.Controllers
 
             return itemsciudad;
         }
-        public  IActionResult ResultadoBusqueda()
+        public IActionResult ResultadoBusqueda()
         {
             List<BuscadorDeAjolamientoResponse> result = null;
             if (_BuscadorDeAjolamiento != null)
             {
                 result = _BuscadorDeAjolamiento;
             }
-       
-           
+
+
             return View(result);
         }
         public async Task<IActionResult> MisDatos()
@@ -197,7 +200,7 @@ namespace AgenciaFinal.Controllers
 
                 TempData["guardado"] = "Usuario Actualizado";
             }
-            return RedirectToAction("MisDatos" , "Usuarios");
+            return RedirectToAction("MisDatos", "Usuarios");
         }
         public async Task<IActionResult> MisReservas()
         {
@@ -329,7 +332,7 @@ namespace AgenciaFinal.Controllers
             return View(usuario);
         }
         */
-        
+
 
 
         // POST: Usuarios/Edit/5
@@ -338,7 +341,7 @@ namespace AgenciaFinal.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Usuario usuario)
-    {
+        {
             var us = usuario;
             var passViejo = Request.Form["passViejo"];
             var passNuevo1 = Request.Form["passNueva"];
@@ -348,19 +351,19 @@ namespace AgenciaFinal.Controllers
             {
                 return NotFound();
             }
-            
-                if (passNuevo1.ToString() == passNuevo2.ToString())
-                {
-                    usuario.password = passNuevo1;
 
-                    Global.nombre = usuario.nombre;
-                    Global.password = usuario.password;
+            if (passNuevo1.ToString() == passNuevo2.ToString())
+            {
+                usuario.password = passNuevo1;
 
-                     _context.Update(usuario);
-                    await _context.SaveChangesAsync();
+                Global.nombre = usuario.nombre;
+                Global.password = usuario.password;
 
-                    TempData["guardado"] = "Usuario Actualizado";
-                }
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();
+
+                TempData["guardado"] = "Usuario Actualizado";
+            }
             return RedirectToAction(nameof(Index));
         }
 
@@ -398,5 +401,93 @@ namespace AgenciaFinal.Controllers
         {
             return _context.Usuario.Any(e => e.id == id);
         }
+
+
+
+
+
+
+        public IActionResult IndexUsuario()
+        {
+            //METODO SIN VISTA QUE ROMPE LA SESSION
+            return View();
+        }
+
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> BusquedaDeAlojamiento()
+        {
+            var ciudad = Request.Form["ciudad"];
+            var cantPersonasRequest = Request.Form["cantidadPersonas"];
+            var esHotelRequest = Request.Form["esHotel"];
+            var fechaDesde = Request.Form["fechaDesde"];
+            var fechaHasta = Request.Form["fechaHasta"];
+
+            var esHotel = false;
+
+            int cantPersonas = int.Parse(cantPersonasRequest.ToString());
+
+
+            if (esHotelRequest.ToString() == "hotel")
+            {
+                esHotel = true;
+            }
+
+            var alojamientos = from alojamientoss in _context.Alojamiento.Where(
+                                                                        a => a.ciudad == ciudad.ToString()
+                                                                        & a.cantidadDePersonas >= cantPersonas
+                                                                        & a.esHotel == esHotel
+                                           )
+                               select alojamientoss;
+
+
+            var reservas = from reserva in _context.Reserva.ToList() select reserva;
+
+
+            List<Alojamiento> alojamientosFiltrados = new List<Alojamiento>();
+
+
+
+            foreach (var alojamiento in alojamientos)
+            {
+                alojamientosFiltrados.Add(alojamiento);
+            }
+
+            foreach (var reserva in reservas)
+            {
+                foreach (var alojamiento in alojamientosFiltrados)
+                {
+                    if (reserva.id_alojamiento.id == alojamiento.id)
+                    {
+                        alojamientosFiltrados.Remove(alojamiento);
+                    }
+
+                }
+            }
+
+            Global.alojamientosFiltrados = alojamientosFiltrados;
+
+
+            return RedirectToAction("ResultadoBusqueda", "Usuarios");
+        }
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
 }
+
+
