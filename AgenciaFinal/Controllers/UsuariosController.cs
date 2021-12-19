@@ -83,7 +83,7 @@ namespace AgenciaFinal.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento(BuscadorDeAjolamientoRequest sobrecargaFalsa)
+        public IActionResult BusquedaDeAlojamiento(BuscadorDeAjolamientoRequest sobrecargaFalsa)
         {
 
             string ciudad = sobrecargaFalsa.Ciudad;
@@ -152,7 +152,7 @@ namespace AgenciaFinal.Controllers
            
             return View(result);
         }
-        public async Task<IActionResult> MisDatos()
+        public IActionResult MisDatos()
         {
 
             var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
@@ -160,7 +160,7 @@ namespace AgenciaFinal.Controllers
             return View(usuario);
         }
 
-        public async Task<IActionResult> EditUsuario(int? id)
+        public IActionResult EditUsuario(int? id)
         {
 
             var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
@@ -175,7 +175,8 @@ namespace AgenciaFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditUsuario(int id, Usuario usuario)
         {
-            var us = usuario;
+            var usuariodata = _context.Usuario.Where(usuario => usuario.nombre == Global.nombre).FirstOrDefault();
+            var passdata = usuariodata.password;
             var passViejo = Request.Form["passViejo"];
             var passNuevo1 = Request.Form["passNueva"];
             var passNuevo2 = Request.Form["passNueva1"];
@@ -185,21 +186,32 @@ namespace AgenciaFinal.Controllers
                 return NotFound();
             }
 
-            if (passNuevo1.ToString() == passNuevo2.ToString())
+            if (passNuevo1.ToString() == null)
+            {
+                usuario.password = passdata;
+
+                Global.nombre = usuario.nombre;
+                Global.password = usuario.password;
+
+              
+
+                TempData["guardado"] = "Usuario Actualizado";
+            } else
             {
                 usuario.password = passNuevo1;
 
                 Global.nombre = usuario.nombre;
                 Global.password = usuario.password;
 
-                _context.Update(usuario);
-                await _context.SaveChangesAsync();
+          
 
                 TempData["guardado"] = "Usuario Actualizado";
             }
+            _context.Update(usuario);
+            await _context.SaveChangesAsync();
             return RedirectToAction("MisDatos" , "Usuarios");
         }
-        public async Task<IActionResult> MisReservas()
+        public IActionResult MisReservas()
         {
             var reservas = _context.Reserva
             .Include(c => c.id_alojamiento)
@@ -219,14 +231,14 @@ namespace AgenciaFinal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Reservar()
+        public IActionResult Reservar()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ConfirmarReservar()
+        public IActionResult ConfirmarReservar()
         {
             return View();
         }
