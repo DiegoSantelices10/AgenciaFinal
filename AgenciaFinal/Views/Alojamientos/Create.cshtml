@@ -23,8 +23,8 @@
                 <input type="button" value="HOTEL" class="btn btn-primary" id="hotelform" />
                 <input type="button" value="CABAÑA" class="btn btn-rose" id="cabaniaform" />
             </div>
-            <form asp-action="Create" style="display:none" id="hotelview">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form asp-action="Create" style="display:none" id="hotelview" enctype="multipart/form-data">
+                <div class="text-danger"></div>
 
                 <div class="row form-group">
                     <div class=" col-md-6">
@@ -68,13 +68,23 @@
                         <span asp-validation-for="esHotel" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="imageFile" style="margin-left:85px;"></label>
+                        <input asp-for="imageFile" acecept="image/*" />
+                        <span asp-validation-for="imageFile" class="text-danger"></span>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <input type="submit" value="Crear Alojamiento" class="btn btn-primary" />
+
+                    <div class="col-md-6">
+                        <input type="submit" value="Crear Alojamiento" class="btn btn-primary" />
+                    </div>
                 </div>
 
 
             </form>
-            <form asp-action="Create" style="display:none" id="cabaniaview">
+            <form asp-action="Create" style="display:none" id="cabaniaview" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="row form-group">
@@ -108,17 +118,24 @@
                         <span asp-validation-for="cabania.banios" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
-                        <label asp-for="cabania.habitaciones" ></label>
+                        <label asp-for="cabania.habitaciones"></label>
                         <input asp-for="cabania.habitaciones" class="form-control" />
                         <span asp-validation-for="cabania.habitaciones" class="text-danger"></span>
                     </div>
                 </div>
-                    <div class="col-md-4">
-                        <label asp-for="cabania.precioPorDia" ></label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="imageFile" style="margin-left:85px;"></label>
+                        <input asp-for="imageFile" acecept="image/*" />
+                        <span asp-validation-for="imageFile" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="cabania.precioPorDia"></label>
                         <input asp-for="cabania.precioPorDia" class="form-control" />
                         <span asp-validation-for="cabania.precioPorDia" class="text-danger"></span>
                     </div>
-                
+                </div>
+
                 <div class="form-group">
                     <input type="submit" value="Crear Alojamiento" class="btn btn-primary" />
                 </div>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AgenciaFinal.Models
 {
@@ -33,7 +35,12 @@ namespace AgenciaFinal.Models
         [Display(Name = "CANTIDAD DE PERSONAS")]
         public int cantidadDePersonas { get; set; }
 
+        [Display(Name = "Nombre de imagen")]
         public string imagen { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Upload file")]
+        public IFormFile imageFile { get; set; }
         public Hotel hotel { get; set; }
         public Cabania cabania { get; set; }
 

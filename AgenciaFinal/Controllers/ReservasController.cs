@@ -278,5 +278,42 @@ namespace AgenciaFinal.Controllers
             }
             return View(reserva);
         }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reservar(int id)
+        {
+
+            Alojamiento alojamiento = _context.Alojamiento.Where(a => a.id == id).FirstOrDefault();
+            Usuario usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
+
+            double precio = 0;
+
+            if (alojamiento.hotel != null)
+            {
+
+                precio = alojamiento.hotel.precio_por_persona * Global.cantPersonas;
+
+            }
+            else
+            {
+                var cantDias = Global.fDesde.Subtract(Global.fHasta);
+
+                precio = alojamiento.cabania.precioPorDia * cantDias.Days;
+            }
+
+
+            Reserva reserva = new Reserva(Global.fDesde, Global.fDesde, alojamiento, usuario, precio);
+
+            _context.Reserva.Add(reserva);
+            await _context.SaveChangesAsync();
+            TempData["reservado"] = "Reserva Confirmada";
+
+            return RedirectToAction("MisReservas", "Usuarios");
+        }
+
+
     }
 }
