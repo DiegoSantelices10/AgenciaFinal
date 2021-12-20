@@ -12,10 +12,12 @@ namespace AgenciaFinal.Models
         [Display(Name = "ID")]
         public int id { get; set; }
 
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         [DataType(DataType.Date)]
         [Display(Name = "DESDE")]
         public DateTime? fDesde { get; set; }
 
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         [DataType(DataType.Date)]
         [Display(Name = "HASTA")]
         public DateTime? fHasta { get; set; }

@@ -7,18 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgenciaFinal.DataAccess;
 using AgenciaFinal.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace AgenciaFinal.Controllers
 {
     public class AlojamientosController : Controller
     {
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly AppDbContext _context;
 
-        public AlojamientosController(AppDbContext context)
+
+        public AlojamientosController(AppDbContext context, IWebHostEnvironment hostEnvironment)
         {
+            _hostEnvironment = hostEnvironment;
             _context = context;
         }
-
 
 
         public IEnumerable<Alojamiento> aloja { get; set; }
@@ -84,15 +88,25 @@ namespace AgenciaFinal.Controllers
         {
 
 
-
-
             if (ModelState.IsValid)
             {
+                //Save image to wwwroot/image
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(alojamiento.imageFile.FileName);
+                string extension = Path.GetExtension(alojamiento.imageFile.FileName);
+                alojamiento.imagen = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/img/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await alojamiento.imageFile.CopyToAsync(fileStream);
+                }
+                //Insert record
                 _context.Add(alojamiento);
                 await _context.SaveChangesAsync();
                 TempData["alojcreado"] = "Alojamiento creado con exito";
                 return RedirectToAction(nameof(Index));
             }
+    
             return View(alojamiento);
         }
 
