@@ -38,7 +38,7 @@ namespace AgenciaFinal.Controllers
         public IEnumerable<Alojamiento> aloja { get; set; }
 
 
-        public async Task<IActionResult> BusquedaDeAlojamientoGian()
+        public async Task<IActionResult> BusquedaDeAlojamiento()
         {
             ViewBag.itemsCiudad = GetFkCiudad(_context.Ciudades);
             aloja = await _context.Alojamiento
@@ -69,7 +69,7 @@ namespace AgenciaFinal.Controllers
         }
 
         [HttpGet]
-        public IActionResult IndexUsuarioGian()
+        public IActionResult IndexUsuario()
         {
             List<SelectListItem> ajolamientoText = new List<SelectListItem>();
 
@@ -99,10 +99,10 @@ namespace AgenciaFinal.Controllers
 
             var result = (from alo in _context.Alojamiento
                           join re in _context.Reserva on alo.id.ToString() equals re.id_alojamiento.id.ToString()
-                          join ciu in _context.Ciudades on alo.ciudad equals ciu.id.ToString()
+                          join ciu in _context.Ciudades on alo.ciudad.id equals ciu.id
                           where
                           alo.cantidadDePersonas == cantPersonas &&
-                          ciu.id.ToString() == ciudad &&
+                          alo.ciudad.id.ToString() == ciudad &&
                           alo.esHotel == (string.Compare(esHotel, "hotel") == 0)
                           //&& (re.fDesde == fDesde && re.fHasta == fHasta)
 
@@ -422,79 +422,116 @@ namespace AgenciaFinal.Controllers
 
 
 
-        public IActionResult IndexUsuario()
-        {
-            //METODO SIN VISTA QUE ROMPE LA SESSION
-            return View();
-        }
 
 
 
 
 
-        [HttpPost]
-        public async Task<IActionResult> BusquedaDeAlojamiento()
-        {
-            var ciudad = Request.Form["ciudad"];
-            var cantPersonasRequest = Request.Form["cantidadPersonas"];
-            var esHotelRequest = Request.Form["esHotel"];
-            var fechaDesde = Request.Form["fechaDesde"];
-            var fechaHasta = Request.Form["fechaHasta"];
+        //[HttpPost]
+        //public async Task<IActionResult> BusquedaDeAlojamientoMati()
+        //{
+        //    var ciudad = Request.Form["ciudad"];
+        //    var cantPersonasRequest = Request.Form["cantidadPersonas"];
+        //    var esHotelRequest = Request.Form["esHotel"];
+        //    var fechaDesde = Request.Form["fechaDesde"];
+        //    var fechaHasta = Request.Form["fechaHasta"];
 
-            int cantPersonas = int.Parse(cantPersonasRequest.ToString());
-            
-            //ANTICIPO PARA RESERVAR
-            Global.fDesde = DateTime.Parse(fechaDesde.ToString());
-            Global.fHasta = DateTime.Parse(fechaHasta.ToString());
-            Global.cantPersonas = cantPersonas;
+        //    int cantPersonas = int.Parse(cantPersonasRequest.ToString());
 
-
-            var esHotel = false;
-
-            if (esHotelRequest.ToString() == "hotel")
-            {
-                esHotel = true;
-            }
-
-            var alojamientos = from alojamientoss in _context.Alojamiento.Where(
-                                                                        a => a.ciudad == ciudad.ToString()
-                                                                        & a.cantidadDePersonas >= cantPersonas
-                                                                        & a.esHotel == esHotel
-                                           )
-                               select alojamientoss;
+        //    //ANTICIPO PARA RESERVAR
+        //    Global.fDesde = DateTime.Parse(fechaDesde.ToString());
+        //    Global.fHasta = DateTime.Parse(fechaHasta.ToString());
+        //    Global.cantPersonas = cantPersonas;
 
 
-            var reservas = from reserva in _context.Reserva.ToList() select reserva;
+        //    var esHotel = false;
+
+        //    if (esHotelRequest.ToString() == "hotel")
+        //    {
+        //        esHotel = true;
+        //    }
+
+            //var alojamientos = from alojamientoss in _context.Alojamiento.Where(
+            //                                                          a => a.ciudad == ciudad.ToString()
+            //                                                        & a.cantidadDePersonas >= cantPersonas
+            //                                                      & a.esHotel == esHotel
+            //                    )
+            //      select alojamientoss;
 
 
-            List<Alojamiento> alojamientosFiltrados = new List<Alojamiento>();
+//            var reservas = from reserva in _context.Reserva.ToList() select reserva;
+
+
+//            List<Alojamiento> alojamientosFiltrados = new List<Alojamiento>();
 
 
 
-            foreach (var alojamiento in alojamientos)
-            {
-                alojamientosFiltrados.Add(alojamiento);
-            }
+//            foreach (var alojamiento in alojamientos)
+//            {
+//                alojamientosFiltrados.Add(alojamiento);
+//            }
 
-            foreach (var reserva in reservas)
-            {
-                foreach (var alojamiento in alojamientosFiltrados)
-                {
-                    if (reserva.id_alojamiento.id == alojamiento.id)
-                    {
-                        alojamientosFiltrados.Remove(alojamiento);
-                    }
+//            foreach (var reserva in reservas)
+//            {
+//                foreach (var alojamiento in alojamientosFiltrados)
+//                {
+//                    if (reserva.id_alojamiento.id == alojamiento.id)
+//                    {
+//                        alojamientosFiltrados.Remove(alojamiento);
+//                    }
 
-                }
-            }
+//                }
+//            }
 
-            Global.alojamientosFiltrados = alojamientosFiltrados;
+//            Global.alojamientosFiltrados = alojamientosFiltrados;
 
 
-            return RedirectToAction("ResultadoBusqueda", "Usuarios");
-        }
+//            return RedirectToAction("ResultadoBusqueda", "Usuarios");
+//        }foreach (var alojamiento in alojamientos)
+//            {
+//                alojamientosFiltrados.Add(alojamiento);
+//            }
 
-     
+//            foreach (var reserva in reservas)
+//            {
+//                foreach (var alojamiento in alojamientosFiltrados)
+//                {
+//                    if (reserva.id_alojamiento.id == alojamiento.id)
+//                    {
+//                        alojamientosFiltrados.Remove(alojamiento);
+//                    }
+
+//                }
+//            }
+
+//            Global.alojamientosFiltrados = alojamientosFiltrados;
+
+
+//return RedirectToAction("ResultadoBusqueda", "Usuarios");
+//        }foreach (var alojamiento in alojamientos)
+//            {
+//                alojamientosFiltrados.Add(alojamiento);
+//            }
+
+//            foreach (var reserva in reservas)
+//            {
+//                foreach (var alojamiento in alojamientosFiltrados)
+//                {
+//                    if (reserva.id_alojamiento.id == alojamiento.id)
+//                    {
+//                        alojamientosFiltrados.Remove(alojamiento);
+//                    }
+
+//                }
+//            }
+
+//            Global.alojamientosFiltrados = alojamientosFiltrados;
+
+
+//return RedirectToAction("ResultadoBusqueda", "Usuarios");
+//        }
+
+
 
     }
 

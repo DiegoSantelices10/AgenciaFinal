@@ -1,11 +1,16 @@
-﻿@{
+﻿@model AgenciaFinal.Models.ViewModels.BuscadorDeAjolamientoRequest
+
+
+
+@{
     ViewData["Title"] = "BusquedaDeAlojamiento";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
-
+    List<SelectListItem> ciudadId = (List<SelectListItem>)ViewBag.itemsCiudad;
+    List<SelectListItem> alojamiento = (List<SelectListItem>)ViewBag.itemsAlojamiento;
 
 }
 
-<div class="col-md-12" >
+<div class="col-md-12">
     <div class="card" style="margin-top:80px;">
         <div class="card-header card-header-rose">
             <h4 class="card-title">Busca tu alojamiento favorito y Reservalo con pocos Clicks!</h4>
@@ -17,36 +22,41 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                           <label class="bmd-label-static" >Ciudad</label>
-                            <input class="form-control" name="ciudad">
-                            <span class="text-danger"></span>
+                            @*<label class="bmd-label-static" asp-for="id_alojamiento.ciudad"></label>
+        <input class="form-control" asp-for="id_alojamiento.ciudad">
+        <span asp-validation-for="id_alojamiento.ciudad" class="text-danger"></span>*@
+                            <label class="bmd-label-static">Ciudad</label>
+                            @Html.DropDownListFor(model => model.Ciudad, ciudadId, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-static">fecha Desde</label>
-                            <input  type="date" name="fechaDesde" class="form-control">
+                            <input type="date" name="fechaDesde" class="form-control">
                             <span class="text-danger"></span>
                         </div>
                     </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="bmd-label-static"> fecha Hasta</label>
-                        <input type="date" name="fechaHasta" class="form-control">
-                        <span class="text-danger"></span>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-static"> fecha Hasta</label>
+                            <input type="date" name="fechaHasta" class="form-control">
+                            <span class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-                </div>
-        
+
                 <div class="row mt-3 ">
                     <div class="col-md-4">
-                        <label>ELIJA TIPO DE ALOJAMIENTO</label>
-                        <select class="form-control form-select-md mb-1" aria-label=".form-select-lg example">
-                            <option value="hotel">hotel</option>
-                            <option value="cabania">cabania</option>
-                        </select>
+                        <label class="bmd-label-static">ELIJA TIPO DE ALOJAMIENTO</label>
+                        @*<select asp-for="AlojamientoId" class="form-control mt-2 " style="height:0px; " >
+            <option value="hotel">hotel</option>
+            <option value="cabania">cabania</option>
+
+        </select>*@
+
+                        @Html.DropDownListFor(model => model.Alojamiento, alojamiento, "Seleccione un tipo..", new { id = "normalDropwn", @class = "form-control" })
                     </div>
-                   
+
                     <div class="col-md-4">
                         <div class="form-group mt-3">
                             <label class="bmd-label-static">cantidad de Personas</label>
@@ -54,12 +64,12 @@
                             <span class="text-danger"></span>
                         </div>
                     </div>
-                    </div>
+                </div>
 
                 <div>
                     <input type="submit" value="Buscar" class="btn btn-rose pull-right" />
                 </div>
-                    <div class="clearfix"></div>
+                <div class="clearfix"></div>
             </form>
         </div>
     </div>
