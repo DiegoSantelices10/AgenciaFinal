@@ -20,7 +20,8 @@ namespace AgenciaFinal.Models
         public string barrio { get; set; }
 
         [Display(Name = "CIUDAD")]
-        public string ciudad { get; set; }
+        public Ciudades ciudad { get; set; }
+        
 
         [Display(Name = "ESTRELLAS")]
         public string estrellas { get; set; }
@@ -39,24 +40,12 @@ namespace AgenciaFinal.Models
         public string imagen { get; set; }
 
         [NotMapped]
-        [Display(Name = "Upload file")]
         public IFormFile imageFile { get; set; }
         public Hotel hotel { get; set; }
         public Cabania cabania { get; set; }
 
         public Alojamiento () {
         }
-        public Alojamiento(string barrio, string ciudad, string estrellas, bool tv, bool esHotel, int cantidadDePersonas, string imagen, Hotel hotel, Cabania cabania)
-        {
-            this.barrio = barrio;
-            this.ciudad = ciudad;
-            this.estrellas = estrellas;
-            this.tv = tv;
-            this.esHotel = esHotel;
-            this.cantidadDePersonas = cantidadDePersonas;
-            this.imagen = imagen;
-            this.hotel = hotel;
-            this.cabania = cabania;
-        }
+        
     }
 }
