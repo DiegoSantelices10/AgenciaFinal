@@ -13,14 +13,15 @@ namespace AgenciaFinal.Models
         public int id { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio")]
+        [Display(Name = "Fecha de Ingreso")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "0:yyyy/MM/dd}")]
         [DataType(DataType.Date)]
-        [Display(Name = "DESDE")]
-        public DateTime? fDesde { get; set; }
+        public DateTime fDesde { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [DataType(DataType.Date)]
         [Display(Name = "HASTA")]
-        public DateTime? fHasta { get; set; }
+        public System.DateTime? fHasta { get; set; }
 
         public Alojamiento id_alojamiento { get; set; }
        
