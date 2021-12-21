@@ -12,5 +12,21 @@ namespace AgenciaFinal.Models.ViewModels
         public string Ciudad { get; set; }      
         public string barrioAlojamiento { get; set; }
         public string estrellas { get; set; }
+        public string imagen { get; set; }
+
+
+
+
+        //reserva       
+        public int idReserva { get; set; } 
+        public DateTime fDesde { get; set; }   
+        public System.DateTime? fHasta { get; set; }
+        public string id_alojamiento { get; set; }
+        public string id_usuario { get; set; }      
+        public double precio { get; set; }
+
+
+
+
     }
 }
