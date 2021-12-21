@@ -36,7 +36,7 @@ namespace AgenciaFinal.Models
 
         }
 
-        public Reserva(DateTime? fDesde, DateTime? fHasta, Alojamiento id_alojamiento, Usuario id_usuario, double precio)
+        public Reserva(DateTime fDesde, DateTime? fHasta, Alojamiento id_alojamiento, Usuario id_usuario, double precio)
         {
             this.fDesde = fDesde;
             this.fHasta = fHasta;
