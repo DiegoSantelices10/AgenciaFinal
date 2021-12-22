@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgenciaFinal.Models.ViewModels
 {
-    public class DetailsAlojamientoRequest
+    public class DetailsAlojamientoResponse
     {
 
 
@@ -30,7 +30,7 @@ namespace AgenciaFinal.Models.ViewModels
         public Hotel hotel { get; set; }
         public Cabania cabania { get; set; }
 
-        public DetailsAlojamientoRequest()
+        public DetailsAlojamientoResponse()
         {
         }
 

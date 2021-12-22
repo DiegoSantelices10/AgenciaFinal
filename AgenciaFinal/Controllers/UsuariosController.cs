@@ -16,10 +16,12 @@ namespace AgenciaFinal.Controllers
     public class UsuariosController : Controller
     {
         private readonly AppDbContext _context;
-      
+
 
         private static List<BuscadorDeAjolamientoResponse> _BuscadorDeAjolamiento { get; set; }
         //  private static IEnumerable<Alojamiento> _BuscadorDeAjolamiento { get; set; }
+        private static string cantDias;
+        private static int cantPersona = 0;
 
 
         //PARA LA BUSQUEDA DE ALOJAMIENTOS
@@ -88,10 +90,29 @@ namespace AgenciaFinal.Controllers
             if (ModelState.IsValid)
             {
                 var id = BuscadorDeAjolamientoResponse.id;
-                var result = _context.Alojamiento.Find(id);
-             
-                Reserva _reserva = new Reserva();
-                _reserva.id_alojamiento.id = result.id;
+                //var result = _context.Alojamiento.Find(id);
+
+                var result =  _context.Alojamiento
+                 .Include(c => c.hotel)
+                 .Include(c => c.cabania)
+                .FirstOrDefaultAsync(m => m.id == id);
+
+                double precio = 0;
+                if (result.Result.hotel != null)
+                {
+                    precio = result.Result.hotel.precio_por_persona * cantPersona;
+                }
+                else
+                {
+      
+                    precio = result.Result.cabania.precioPorDia * int.Parse(cantDias);
+                }
+
+                var usuario = _context.Usuario.Where(u => u.nombre == Global.nombre & u.password == Global.password).FirstOrDefault();
+
+                Reserva _reserva = new Reserva(DateTime.Now, DateTime.Now, result.Result, usuario, precio);
+
+                _reserva.id_alojamiento.id = result.Result.id;
                 //_reserva.fDesde = BuscadorDeAjolamiento.fDesde;
                 //_reserva.fHasta = BuscadorDeAjolamiento.fHasta;
                 //_reserva.id_usuario.id = Global.id_user;
@@ -99,7 +120,7 @@ namespace AgenciaFinal.Controllers
                 _context.Add(_reserva);
                 _context.SaveChangesAsync();
                 TempData["alojcreado"] = "reseva creado con exito";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("IndexUsuario","Usuarios");
 
             }
             return View();
@@ -115,9 +136,13 @@ namespace AgenciaFinal.Controllers
 
             string ciudad = sobrecargaFalsa.Ciudad;
             string esHotel = sobrecargaFalsa.Alojamiento;
-            DateTime? fDesde = sobrecargaFalsa.FDesde;
-            DateTime? fHasta = sobrecargaFalsa.FHasta;
-            var cantPersonas = sobrecargaFalsa.CantidadPersonas;
+
+            DateTime fDesde = sobrecargaFalsa.FDesde;
+            DateTime fHasta = sobrecargaFalsa.FHasta;
+            cantPersona = sobrecargaFalsa.CantidadPersonas;
+           
+            var convert = fHasta.Subtract(fDesde);
+            cantDias = convert.Days.ToString();
 
 
             var result = (from alo in _context.Alojamiento
